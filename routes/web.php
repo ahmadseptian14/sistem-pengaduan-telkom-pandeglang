@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\TeknisiController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\PetugasController;
@@ -38,7 +39,6 @@ Route::middleware(['auth'])->group(function () {
     // Penilaian
     Route::get('/input-penilaian/{id}', [PenilaianController::class, 'create'])->name('penilaian.create');
     Route::post('/create-penilaian', [PenilaianController::class, 'store'])->name('penilaian.store');
-
 });
 
 
@@ -70,6 +70,15 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/edit-customer/{id}', [CustomerController::class, 'edit'])->name('customer.edit');
     Route::put('/edit-customer/{id}', [CustomerController::class, 'update'])->name('customer.update');
     Route::delete('/customer-delete/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');
+
+    // teknisi
+    Route::get('/teknisi', [TeknisiController::class, 'index'])->name('teknisi.index');
+    Route::get('/create-teknisi', [TeknisiController::class, 'create'])->name('teknisi.create');
+    Route::post('/create-teknisi-store', [TeknisiController::class, 'store'])->name('teknisi.store');
+    Route::get('/edit-teknisi/{id}', [TeknisiController::class, 'edit'])->name('teknisi.edit');
+    Route::put('/edit-teknisi/{id}', [TeknisiController::class, 'update'])->name('teknisi.update');
+    Route::delete('/teknisi-delete/{id}', [TeknisiController::class, 'destroy'])->name('teknisi.destroy');
+
 
     //Penialain
     Route::get('/penilaian', [PenilaianController::class, 'index'])->name('penilaian.index');

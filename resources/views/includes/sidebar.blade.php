@@ -29,6 +29,13 @@
             <i class="fas fa-fw fa-user"></i>
             <span>Kelola Data Pelanggan</span></a>
     </li>
+
+    <li class="nav-item active">
+        <a class="nav-link" href="{{route('teknisi.index')}}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Kelola Data Teknisi</span></a>
+    </li>
+
     @endif
    
 

@@ -413,6 +413,7 @@
                                             <p>Rating : {{ $penilaian->rating }}</p>
                                         </div>
                                     @empty
+                                        <h5>Belum ada Penilaian</h5>
                                     @endforelse
 
                                 </div>
