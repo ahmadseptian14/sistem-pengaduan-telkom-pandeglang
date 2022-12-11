@@ -36,6 +36,12 @@
             <span>Kelola Data Teknisi</span></a>
     </li>
 
+    <li class="nav-item active">
+        <a class="nav-link" href="{{route('kritik.admin.index')}}">
+            <i class="fas fa-fw fa-list"></i>
+            <span>Kelola Data Kritik & Saran</span></a>
+    </li>
+
     @endif
    
 

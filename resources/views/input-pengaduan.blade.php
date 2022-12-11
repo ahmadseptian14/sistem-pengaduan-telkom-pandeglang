@@ -269,9 +269,9 @@
                        <li class="nav-item">
                         <a class="nav-link" href="{{route('pengaduan.pelanggan')}}">Lihat Hasil Pengaduan</a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="{{ route('penilaian.create') }}">Beri Penilaian</a>
-                    </li> --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('kritik.index')}}">Kritik & Saran</a>
+                    </li>
                        @endauth
                     </ul>
                     @guest

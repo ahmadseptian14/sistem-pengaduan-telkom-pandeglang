@@ -19,13 +19,13 @@
 <body>
   <div class="container mt-5">
     <div class="title text-center mb-5">
-      <h2>Laporan Layanan Pengaduan Customer pada Telkom Rangkasbitung</h2>
+      <h2>Laporan Layanan Pengaduan Customer pada Telkom Pandeglang</h2>
     </div>
     <table class="table table-bordered">
       <thead class="thead">
         <tr>
           <th scope="col">No</th>
-          <th scope="col">NIK</th>
+          <th scope="col">Nomor Pelanggan</th>
           <th scope="col">Nama</th>
           <th scope="col">Pengaduan</th>
           <th scope="col">Tanggal</th>
@@ -37,11 +37,15 @@
           
         <tr>
           <td>{{$loop->iteration}} </td>
-          <td>{{ $pengaduan->user_nik }}</td>
-          <td>{{ $pengaduan->name }}</td>
-          <td>{{ $pengaduan->description }}</td>
+          <td>{{ $pengaduan->user->nomor_pelanggan }}</td>
+          <td>{{ $pengaduan->user->name }}</td>
+          <td>{{ $pengaduan->keterangan }}</td>
           <td>{{ $pengaduan->created_at->format('l, d F Y') }}</td>
+          @if ($pengaduan->status == null)
+          <td>{{ $pengaduan->tanggapan->status_pengaduan }}</td>
+          @else
           <td>{{ $pengaduan->status }}</td>
+          @endif
 
         </tr>
         @endforeach

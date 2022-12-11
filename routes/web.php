@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\KritikController;
 use App\Http\Controllers\TeknisiController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\PenilaianController;
@@ -39,6 +40,12 @@ Route::middleware(['auth'])->group(function () {
     // Penilaian
     Route::get('/input-penilaian/{id}', [PenilaianController::class, 'create'])->name('penilaian.create');
     Route::post('/create-penilaian', [PenilaianController::class, 'store'])->name('penilaian.store');
+
+    // Kritik Saran
+    Route::get('/kritik-saran', [KritikController::class, 'index'])->name('kritik.index');
+    Route::get('/input-kritik-saran', [KritikController::class, 'create'])->name('kritik.create');
+    Route::post('/kritik-saran-store', [KritikController::class, 'store'])->name('kritik.store');
+
 });
 
 
@@ -86,7 +93,12 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     //SMS
     Route::get('/sms/{id}', [SmsController::class, 'create'])->name('sms.create');
     Route::post('/send-sms', [SmsController::class, 'store'])->name('sms.store');
+
+    // Kritik
+    Route::get('/kritik-saran', [KritikController::class, 'admin_index'])->name('kritik.admin.index');
+
 });
+
 
 
 

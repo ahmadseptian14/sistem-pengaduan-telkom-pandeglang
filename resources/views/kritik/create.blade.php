@@ -108,7 +108,7 @@
                 font: 600 1rem/1.5rem Poppins, sans-serif;
                 padding: 1rem 1.5rem;
                 border-radius: 0.75rem;
-                background-color: red;
+                background-color: #ff7c57;
                 transition: 0.3s;
             }
 
@@ -207,6 +207,11 @@
         </style>
         <div class="container-xxl mx-auto p-0  position-relative header-2-1" style="font-family: 'Poppins', sans-serif">
             <nav class="navbar navbar-expand-lg navbar-light">
+                {{-- <a href="#">
+                    <img style="margin-right: 0.75rem"
+                        src="http://api.elements.buildwithangga.com/storage/files/2/assets/Header/Header2/Header-2-2.png"
+                        alt="" />
+                </a> --}}
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="modal"
                     data-bs-target="#targetModal-item">
                     <span class="navbar-toggler-icon"></span>
@@ -222,6 +227,7 @@
                                         src="http://api.elements.buildwithangga.com/storage/files/2/assets/Header/Header2/Header-2-2.png"
                                         alt="" />
                                 </a> --}}
+
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -234,7 +240,10 @@
                                         <a class="nav-link" href="#">Tata Cara</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('pengaduan.pelanggan')}}">Lihat Hasil Pengaduan</a>
+                                        <a class="nav-link" href="#">Lihat Hasil Pengaduan</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Beri Penilaian</a>
                                     </li>
                                 </ul>
                             </div>
@@ -254,35 +263,28 @@
                             <a class="nav-link" href="{{ route('home') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#tataCara">Tata Cara</a>
+                            <a class="nav-link" href="#tatacara">Tata Cara</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#paket">Paket Indihome</a>
-                        </li>
-                        @auth
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('pengaduan.pelanggan')}}">Lihat Hasil Pengaduan</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('kritik.index')}}">Kritik & Saran</a>
-                        </li>
-                        @endauth
-                       
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('penilaian.create') }}">Beri Penilaian</a>
-                        </li> --}}
+                       @auth
+                       <li class="nav-item">
+                        <a class="nav-link" href="{{route('pengaduan.pelanggan')}}">Lihat Hasil Pengaduan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('pengaduan.create') }}">Laporkan Pengaduan</a>
+                    </li>
+                       @endauth
                     </ul>
                     @guest
                     <div class="gap-3">
-                        <a href="{{ route('login') }}" class="btn btn-default btn-lg btn-danger">
+                        <a href="{{ route('login') }}" class="btn btn-default btn-no-fill">
                             Log In
                         </a>
                     </div>
-                    {{-- <div class="gap-3">
+                    <div class="gap-3">
                         <a href="{{ route('register') }}" class="btn btn-default btn-no-fill">
                             Register
                         </a>
-                    </div> --}}
+                    </div>
                     @endguest
 
                     @auth
@@ -307,15 +309,47 @@
 
                 </div>
             </nav>
+            <h1>
+             Berikan Kritik & Saran anda disini
+            </h1>
+            <div class="card" style="background-color : black">
+                <div class="card-body">
+                   <form action="{{route('kritik.store')}}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">
+                          {{-- <input type="text" name="pengaduans_id" class="form-control" hidden value="{{$pengaduan->id}}"> --}}
+                            <div class="col-md-12 mb-3">
+                                <div class="form-group">
+                                    <label style="color: white">Kritik</label>
+                                    <textarea name="kritik" cols="10" rows="5" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <div class="form-group">
+                                    <label style="color: white">Saran</label>
+                                    <textarea name="saran" cols="10" rows="5" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-right">
+                                <button type="submit" class="btn px-5" style="background-color: #00B67A; color :white">
+                                    Beri Kritik & Saran
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>  
 
-            <div>
+            {{-- <div>
                 <div class="mx-auto d-flex flex-lg-row flex-column hero">
                     <!-- Left Column -->
                     <div
                         class="left-column d-flex flex-lg-grow-1 flex-column align-items-lg-start text-lg-start align-items-center text-center">
                         <h1 class="title-text-big">
                             Layanan Pengaduan<br class="d-lg-block d-none" />
-                            Pelanggan Telkom Pandeglang
+                            Pelanggan Telkom Serang
                         </h1>
                         <div
                             class="d-flex flex-sm-row flex-column align-items-center mx-lg-0 mx-auto justify-content-center gap-3">
@@ -327,11 +361,11 @@
                     <!-- Right Column -->
                     <div class="right-column text-center d-flex justify-content-center pe-0">
                         <img id="img-fluid" class="h-auto mw-100"
-                            src="{{ asset('assets/img/logo-telkom.png') }}"
+                            src="http://api.elements.buildwithangga.com/storage/files/2/assets/Header/Header2/Header-2-1.png"
                             alt="" />
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </section>
     <section class="h-100 w-100 bg-white" style="box-sizing: border-box">
@@ -505,308 +539,10 @@
                 }
             }
         </style>
-        
-        <section class="h-100 w-100" style="box-sizing: border-box; background-color: #ffffff">
-            <style scoped>
-              @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-        
-              .content-3-8 .btn:focus,
-              .content-3-8 .btn:active {
-                outline: none !important;
-              }
-        
-              .content-3-8 {
-                padding: 5rem 2rem 7rem;
-              }
-        
-              .content-3-8 .title-text {
-                font: 800 1.875rem/2.25rem Poppins, sans-serif;
-                letter-spacing: 0.05em;
-                margin-bottom: 0.75rem;
-              }
-        
-              .content-3-8 .caption-text {
-                font: 400 1rem/1.5rem Poppins, sans-serif;
-                letter-spacing: 0.025em;
-                color: #6a6f7e;
-                margin-bottom: 0;
-              }
-        
-              .content-3-8 .card-item {
-                transition: 0.4s;
-                top: 0px;
-                left: 0px;
-                padding: 1rem 0;
-              }
-        
-              .content-3-8 .card-item:hover {
-                top: -3px;
-                left: -3px;
-                transition: 0.4s;
-              }
-        
-              .content-3-8 .card-item-outline {
-                border: 1px solid #2a2e32;
-                padding: 2rem 2.75rem;
-                border-radius: 1rem;
-              }
-        
-              .content-3-8 .price-title {
-                font: 500 1.25rem/1.75rem Poppins, sans-serif;
-                letter-spacing: 0.025em;
-                margin-bottom: 0.75rem;
-              }
-        
-              .content-3-8 .price-value {
-                font: 500 1.5rem/1.5rem Poppins, sans-serif;
-                letter-spacing: 0.025em;
-                margin-bottom: 0.75rem;
-                color: red;
-              }
-        
-              .content-3-8 .price-duration {
-                font: 400 1rem/1.5rem Poppins, sans-serif;
-                margin: 0.625rem;
-                color: #7a7985;
-              }
-        
-              .content-3-8 .price-caption {
-                font: 400 1rem/1.5rem Poppins, sans-serif;
-                letter-spacing: 0.025em;
-                margin-bottom: 2.5rem;
-                color: #7a7985;
-              }
-        
-              .content-3-8 .price-list .check-3-8 {
-                font: 400 0.875rem/1.25rem Poppins, sans-serif;
-                letter-spacing: 0.025em;
-                margin-bottom: 1.75rem;
-              }
-        
-              .content-3-8 .price-list .no-check-3-8 {
-                font: 400 0.875rem/1.25rem Poppins, sans-serif;
-                color: #3f4348;
-                letter-spacing: 0.025em;
-                margin-bottom: 1.75rem;
-              }
-        
-              .content-3-8 .span-icon-3-8 {
-                width: 1rem;
-                height: 1rem;
-                margin-right: 0.75rem;
-              }
-        
-              .content-3-8 .btn-outline {
-                border: 1px solid red;
-                color: red;
-                padding-top: 1rem;
-                padding-bottom: 1rem;
-                font-weight: 500;
-                letter-spacing: 0.025em;
-                border-radius: 0.5rem;
-              }
-        
-              .content-3-8 .btn-outline:hover {
-                background-color: red;
-                color: #594415;
-              }
-        
-              .content-3-8 .btn-fill {
-                background-image: linear-gradient(rgb(255, 0, 0),
-                    rgb(255, 0, 0));
-                color: #ffffff;
-                padding-top: 1rem;
-                padding-bottom: 1rem;
-                font-weight: 500;
-                letter-spacing: 0.025em;
-                border-radius: 0.5rem;
-              }
-        
-              .content-3-8 .btn-fill:hover {
-                color: #594415;
-                background-image: linear-gradient(#f4b325, #f4b325);
-              }
-        
-              @media (min-width: 576px) {
-                .content-3-8 .title-text {
-                  font: 800 2.25rem/2.5rem Poppins, sans-serif;
-                }
-        
-                .content-3-8 .card-item {
-                  padding: 1rem;
-                }
-              }
-        
-              @media (min-width: 768px) {
-                .content-3-8 {
-                  padding-left: 3.5rem;
-                  padding-right: 3.5rem;
-                }
-              }
-        
-              @media (min-width: 992px) {
-                .content-3-8 .caption-text {
-                  width: 66.666667%;
-                }
-        
-                .content-3-8 .card-item {
-                  width: 33.333333%;
-                }
-              }
-        
-              @media (min-width: 1200px) {
-                .content-3-8 {
-                  padding-left: 9rem;
-                  padding-right: 9rem;
-                }
-              }
-            </style>
-            <div class="content-3-8 overflow-hidden container-xxl mx-auto position-relative"
-              style="font-family: 'Poppins', sans-serif">
-              <div class="container mx-auto">
-                <div class="d-flex flex-column text-center w-100" style="margin-bottom: 2.25rem">
-                  <h2 class="title-text text-dark" id="paket">Pilihan Paket IndiHome</h2>
-                  <p class="caption-text mx-auto">
-                    Pilih paket sesuai kebutuhanmu
-                  </p>
-                </div>
-                <div class="d-flex flex-wrap">
-                
-                  <div class="mx-auto card-item position-relative">
-                    <div class="card-item-outline d-flex flex-column position-relative overflow-hidden h-60"
-                      style="background-color: #2a2e32">
-                      <h2 class="price-title text-white text-white">Paket JITU 1 - 1P</h2>
-                      <h2 class="price-value d-flex align-items-center">
-                        <span>Rp280.000</span>
-                        <span class="price-duration" style="color: #606370">/Bulan</span>
-                      </h2>
-                      <p class="price-caption" style="color: #606370">
-                        Cocok digunakan untuk 5 - 7 perangkat sekaligus
-                      </p>
-                      <div class="price-list text-white">
-                        <p class="d-flex align-items-center check-3-8">
-                          <span class="span-icon-3-8 d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                            <img class="img-fluid"
-                              src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-2.png"
-                              alt="" /> </span>30 Mbps
-                        </p>
-                       
-                      </div>
-                      <a href="https://indihome.co.id/" class="btn btn-fill d-flex justify-content-center align-items-center w-100">
-                        Berlangganan
-                      </a>
-                    </div>
-                  </div>
-
-                  
-                  <div class="mx-auto card-item position-relative">
-                    <div class="card-item-outline d-flex flex-column position-relative overflow-hidden h-60"
-                      style="background-color: #2a2e32">
-                      <h2 class="price-title text-white text-white">IndiHome 3P Streaming Netflix - Basic</h2>
-                      <h2 class="price-value d-flex align-items-center">
-                        <span>Rp475.000
-                        </span>
-                        <span class="price-duration" style="color: #606370">/Bulan</span>
-                      </h2>
-                      <p class="price-caption" style="color: #606370">
-                        Cocok digunakan untuk 5 - 7 perangkat sekaligus
-                      </p>
-                      <div class="price-list text-white">
-                        <p class="d-flex align-items-center check-3-8">
-                          <span class="span-icon-3-8 d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                            <img class="img-fluid"
-                              src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-2.png"
-                              alt="" /> </span>30 Mbps
-                        </p>
-                        {{-- <p class="d-flex align-items-center check-3-8">
-                          <span class="span-icon-3-8 d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                            <img class="img-fluid"
-                              src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-2.png"
-                              alt="" /> </span>Optimize Projects
-                        </p>
-                        <p class="d-flex align-items-center check-3-8">
-                          <span class="span-icon-3-8 d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                            <img class="img-fluid"
-                              src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-2.png"
-                              alt="" /> </span>300+ Unique Project
-                        </p>
-                        <p class="d-flex align-items-center check-3-8">
-                          <span class="span-icon-3-8 d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                            <img class="img-fluid"
-                              src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-2.png"
-                              alt="" /> </span>Own Analytics Platform
-                        </p>
-                        <p class="d-flex align-items-center check-3-8">
-                          <span class="span-icon-3-8 d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                            <img class="img-fluid"
-                              src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-2.png"
-                              alt="" /> </span>Unlimited User
-                        </p> --}}
-                      </div>
-                      <a href="https://api.whatsapp.com/send?phone=62895349203286" class="btn btn-fill d-flex justify-content-center align-items-center w-100">
-                        Berlangganan
-                      </a>
-                    </div>
-                  </div>
-
-                  
-                  <div class="mx-auto card-item position-relative">
-                    <div class="card-item-outline d-flex flex-column position-relative overflow-hidden h-60"
-                      style="background-color: #2a2e32">
-                      <h2 class="price-title text-white text-white">IndiHome Paket 3P Internet + TV + Phone Diskon Biaya PSB</h2>
-                      <h2 class="price-value d-flex align-items-center">
-                        <span>Rp965.000</span>
-                        <span class="price-duration" style="color: #606370">/Bulan</span>
-                      </h2>
-                      <p class="price-caption" style="color: #606370">
-                        Cocok digunakan untuk 12 - 18 perangkat sekaligus
-                      </p>
-                      <div class="price-list text-white">
-                        <p class="d-flex align-items-center check-3-8">
-                          <span class="span-icon-3-8 d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                            <img class="img-fluid"
-                              src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-2.png"
-                              alt="" /> </span>100 Mbps
-                        </p>
-                        <p class="d-flex align-items-center check-3-8">
-                          <span class="span-icon-3-8 d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                            <img class="img-fluid"
-                              src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-2.png"
-                              alt="" /> </span>Telepon Rumah 100 Menit
-                        </p>
-                        <p class="d-flex align-items-center check-3-8">
-                          <span class="span-icon-3-8 d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                            <img class="img-fluid"
-                              src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-2.png"
-                              alt="" /> </span>112 Channel
-                        </p>
-                        {{-- <p class="d-flex align-items-center check-3-8">
-                          <span class="span-icon-3-8 d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                            <img class="img-fluid"
-                              src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-2.png"
-                              alt="" /> </span>Own Analytics Platform
-                        </p>
-                        <p class="d-flex align-items-center check-3-8">
-                          <span class="span-icon-3-8 d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                            <img class="img-fluid"
-                              src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-2.png"
-                              alt="" /> </span>Unlimited User
-                        </p> --}}
-                      </div>
-                      <a href="https://indihome.co.id/" class="btn btn-fill d-flex justify-content-center align-items-center w-100">
-                        Berlangganan
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section> 
-
         <div class="content-2-1 container-xxl mx-auto p-0  position-relative"
-            style="font-family: 'Poppins', sans-serif">
+            style="font-family: 'Poppins', sans-serif" id="tatacara">
             <div class="text-center title-text">
-                <h1 class="text-title" id="tataCara">Tata Cara</h1>
+                <h1 class="text-title">Tata Cara</h1>
             </div>
 
             <div class="grid-padding text-center">
@@ -967,7 +703,7 @@
                                 <a href="#!">FAQ</a>
                             </li>
                             <li>
-                                <a href="#!">Partnerships</a>
+                                <a href="#!">Partnership</a>
                             </li>
                         </ul>
                     </div>
@@ -991,6 +727,9 @@
             </div>
         </div>
     </footer>
+    
+    @include('sweetalert::alert')
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
     </script>
