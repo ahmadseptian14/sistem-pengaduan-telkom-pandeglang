@@ -7,6 +7,8 @@
     <title>Sistem Pengaduan Telkom</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+
 </head>
 
 <body>
@@ -217,6 +219,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+
                 <div class="modal-item modal fade" id="targetModal-item" tabindex="-1" role="dialog"
                     aria-labelledby="targetModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -303,34 +306,8 @@
                             </ul>
                         </div>
                     @endauth
-
                 </div>
             </nav>
-
-            {{-- <div>
-                <div class="mx-auto d-flex flex-lg-row flex-column hero">
-                    <!-- Left Column -->
-                    <div
-                        class="left-column d-flex flex-lg-grow-1 flex-column align-items-lg-start text-lg-start align-items-center text-center">
-                        <h1 class="title-text-big">
-                            Layanan Pengaduan<br class="d-lg-block d-none" />
-                            Pelanggan Telkom Serang
-                        </h1>
-                        <div
-                            class="d-flex flex-sm-row flex-column align-items-center mx-lg-0 mx-auto justify-content-center gap-3">
-                            <a href="{{route('pengaduan.create')}}" class="btn d-inline-flex mb-md-0 btn-try text-white">
-                                Laporkan!!
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Right Column -->
-                    <div class="right-column text-center d-flex justify-content-center pe-0">
-                        <img id="img-fluid" class="h-auto mw-100"
-                            src="http://api.elements.buildwithangga.com/storage/files/2/assets/Header/Header2/Header-2-1.png"
-                            alt="" />
-                    </div>
-                </div>
-            </div> --}}
 
             <div class="section-content section-dashboard-home" data-aos="fade-up">
                 <div class="container-fluid">
@@ -340,9 +317,15 @@
                     <div class="dashboard-content">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="card">
+                                <div class="card mb-5">
                                     <div class="card-body">
-                                        <a href="{{ route('kritik.create') }}" class="btn btn-primary mb-3">Berikan Kritik & Saran</a>
+                                        @if (!auth()->user()->kritik)
+                                        <a href="{{ route('kritik.create') }}" class="btn btn-primary mb-3">Berikan
+                                            Kritik & Saran</a>
+                                        @else
+                                            <h3>Anda sudah memberikan kritik</h3>
+                                        @endif
+
                                         <div>
                                             <table
                                                 class="table table-hover scroll-horizontal-vertical w-100 table-bordered table-striped"
@@ -352,7 +335,7 @@
                                                         <th>Tanggal</th>
                                                         <th>Kritik</th>
                                                         <th>Saran</th>
-                                                        {{-- <th>Aksi</th> --}}
+                                                        <th>Status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -361,6 +344,7 @@
                                                             <td>{{ $kritik->created_at->format('d F Y - H:i:s') }}</td>
                                                             <td>{{ $kritik->kritik }}</td>
                                                             <td>{{ $kritik->saran }}</td>
+                                                            <td>{{ $kritik->status}}</td>
 
                                                             {{-- <td>
                                                       <a href="{{ route('kritik.detail', $kritik->id) }}"
@@ -557,7 +541,7 @@
                 }
             }
         </style>
-        <div class="content-2-1 container-xxl mx-auto p-0  position-relative"
+        {{-- <div class="content-2-1 container-xxl mx-auto p-0  position-relative"
             style="font-family: 'Poppins', sans-serif">
             <div class="text-center title-text">
                 <h1 class="text-title">Tata Cara</h1>
@@ -585,7 +569,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </section>
     <footer class="page-footer font-small blue">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -747,6 +731,13 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#table1').DataTable();
+        });
     </script>
 </body>
 

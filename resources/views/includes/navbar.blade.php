@@ -1,6 +1,6 @@
 <ul class="navbar-nav ml-auto">
-    
-    
+
+
     <h3 style="margin-right: 600px; margin-top: 20px">Layanan Pengaduan Telkom Pandeglang</h3>
     <!-- Nav Item - User Information -->
     <li class="nav-item dropdown no-arrow ">
@@ -31,16 +31,16 @@
             <div>
               @forelse ($pengaduans as $pengaduan)
               <div class="small text-gray-500">{{$pengaduan->created_at}}</div>
-              <span class="font-weight-bold">{{$pengaduan->nama}} baru saja mengirim pengaduan</span>
+              <span class="font-weight-bold">{{$pengaduan->nama}} mengirim pengaduan</span>
               @empty
               <span class="font-weight-bold">Tidak ada pemberitahuan</span>
               @endforelse
-            
+
             </div>
           </a>
         </div>
       </li>
-        
+
     <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

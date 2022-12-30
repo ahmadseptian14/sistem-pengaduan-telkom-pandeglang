@@ -257,7 +257,7 @@
                             <a class="nav-link" href="#tataCara">Tata Cara</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#paket">Paket Indihome</a>
+                            <a class="nav-link" href="{{route("pengaduan")}}">Pengaduan</a>
                         </li>
                         @auth
                         <li class="nav-item">
@@ -266,8 +266,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('kritik.index')}}">Kritik & Saran</a>
                         </li>
+
                         @endauth
-                       
+
                         {{-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('penilaian.create') }}">Beri Penilaian</a>
                         </li> --}}
@@ -278,11 +279,11 @@
                             Log In
                         </a>
                     </div>
-                    {{-- <div class="gap-3">
+                    <div class="gap-3">
                         <a href="{{ route('register') }}" class="btn btn-default btn-no-fill">
                             Register
                         </a>
-                    </div> --}}
+                    </div>
                     @endguest
 
                     @auth
@@ -308,7 +309,7 @@
                 </div>
             </nav>
 
-            <div>
+            {{-- <div>
                 <div class="mx-auto d-flex flex-lg-row flex-column hero">
                     <!-- Left Column -->
                     <div
@@ -331,7 +332,7 @@
                             alt="" />
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </section>
     <section class="h-100 w-100 bg-white" style="box-sizing: border-box">
@@ -505,97 +506,97 @@
                 }
             }
         </style>
-        
+
         <section class="h-100 w-100" style="box-sizing: border-box; background-color: #ffffff">
             <style scoped>
               @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-        
+
               .content-3-8 .btn:focus,
               .content-3-8 .btn:active {
                 outline: none !important;
               }
-        
+
               .content-3-8 {
                 padding: 5rem 2rem 7rem;
               }
-        
+
               .content-3-8 .title-text {
                 font: 800 1.875rem/2.25rem Poppins, sans-serif;
                 letter-spacing: 0.05em;
                 margin-bottom: 0.75rem;
               }
-        
+
               .content-3-8 .caption-text {
                 font: 400 1rem/1.5rem Poppins, sans-serif;
                 letter-spacing: 0.025em;
                 color: #6a6f7e;
                 margin-bottom: 0;
               }
-        
+
               .content-3-8 .card-item {
                 transition: 0.4s;
                 top: 0px;
                 left: 0px;
                 padding: 1rem 0;
               }
-        
+
               .content-3-8 .card-item:hover {
                 top: -3px;
                 left: -3px;
                 transition: 0.4s;
               }
-        
+
               .content-3-8 .card-item-outline {
                 border: 1px solid #2a2e32;
                 padding: 2rem 2.75rem;
                 border-radius: 1rem;
               }
-        
+
               .content-3-8 .price-title {
                 font: 500 1.25rem/1.75rem Poppins, sans-serif;
                 letter-spacing: 0.025em;
                 margin-bottom: 0.75rem;
               }
-        
+
               .content-3-8 .price-value {
                 font: 500 1.5rem/1.5rem Poppins, sans-serif;
                 letter-spacing: 0.025em;
                 margin-bottom: 0.75rem;
                 color: red;
               }
-        
+
               .content-3-8 .price-duration {
                 font: 400 1rem/1.5rem Poppins, sans-serif;
                 margin: 0.625rem;
                 color: #7a7985;
               }
-        
+
               .content-3-8 .price-caption {
                 font: 400 1rem/1.5rem Poppins, sans-serif;
                 letter-spacing: 0.025em;
                 margin-bottom: 2.5rem;
                 color: #7a7985;
               }
-        
+
               .content-3-8 .price-list .check-3-8 {
                 font: 400 0.875rem/1.25rem Poppins, sans-serif;
                 letter-spacing: 0.025em;
                 margin-bottom: 1.75rem;
               }
-        
+
               .content-3-8 .price-list .no-check-3-8 {
                 font: 400 0.875rem/1.25rem Poppins, sans-serif;
                 color: #3f4348;
                 letter-spacing: 0.025em;
                 margin-bottom: 1.75rem;
               }
-        
+
               .content-3-8 .span-icon-3-8 {
                 width: 1rem;
                 height: 1rem;
                 margin-right: 0.75rem;
               }
-        
+
               .content-3-8 .btn-outline {
                 border: 1px solid red;
                 color: red;
@@ -605,12 +606,12 @@
                 letter-spacing: 0.025em;
                 border-radius: 0.5rem;
               }
-        
+
               .content-3-8 .btn-outline:hover {
                 background-color: red;
                 color: #594415;
               }
-        
+
               .content-3-8 .btn-fill {
                 background-image: linear-gradient(rgb(255, 0, 0),
                     rgb(255, 0, 0));
@@ -621,39 +622,39 @@
                 letter-spacing: 0.025em;
                 border-radius: 0.5rem;
               }
-        
+
               .content-3-8 .btn-fill:hover {
                 color: #594415;
                 background-image: linear-gradient(#f4b325, #f4b325);
               }
-        
+
               @media (min-width: 576px) {
                 .content-3-8 .title-text {
                   font: 800 2.25rem/2.5rem Poppins, sans-serif;
                 }
-        
+
                 .content-3-8 .card-item {
                   padding: 1rem;
                 }
               }
-        
+
               @media (min-width: 768px) {
                 .content-3-8 {
                   padding-left: 3.5rem;
                   padding-right: 3.5rem;
                 }
               }
-        
+
               @media (min-width: 992px) {
                 .content-3-8 .caption-text {
                   width: 66.666667%;
                 }
-        
+
                 .content-3-8 .card-item {
                   width: 33.333333%;
                 }
               }
-        
+
               @media (min-width: 1200px) {
                 .content-3-8 {
                   padding-left: 9rem;
@@ -671,7 +672,7 @@
                   </p>
                 </div>
                 <div class="d-flex flex-wrap">
-                
+
                   <div class="mx-auto card-item position-relative">
                     <div class="card-item-outline d-flex flex-column position-relative overflow-hidden h-60"
                       style="background-color: #2a2e32">
@@ -690,15 +691,15 @@
                               src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-2.png"
                               alt="" /> </span>30 Mbps
                         </p>
-                       
+
                       </div>
-                      <a href="https://indihome.co.id/" class="btn btn-fill d-flex justify-content-center align-items-center w-100">
+                      <a href="https://api.whatsapp.com/send?phone=6281381327318" class="btn btn-fill d-flex justify-content-center align-items-center w-100">
                         Berlangganan
                       </a>
                     </div>
                   </div>
 
-                  
+
                   <div class="mx-auto card-item position-relative">
                     <div class="card-item-outline d-flex flex-column position-relative overflow-hidden h-60"
                       style="background-color: #2a2e32">
@@ -718,38 +719,14 @@
                               src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-2.png"
                               alt="" /> </span>30 Mbps
                         </p>
-                        {{-- <p class="d-flex align-items-center check-3-8">
-                          <span class="span-icon-3-8 d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                            <img class="img-fluid"
-                              src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-2.png"
-                              alt="" /> </span>Optimize Projects
-                        </p>
-                        <p class="d-flex align-items-center check-3-8">
-                          <span class="span-icon-3-8 d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                            <img class="img-fluid"
-                              src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-2.png"
-                              alt="" /> </span>300+ Unique Project
-                        </p>
-                        <p class="d-flex align-items-center check-3-8">
-                          <span class="span-icon-3-8 d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                            <img class="img-fluid"
-                              src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-2.png"
-                              alt="" /> </span>Own Analytics Platform
-                        </p>
-                        <p class="d-flex align-items-center check-3-8">
-                          <span class="span-icon-3-8 d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                            <img class="img-fluid"
-                              src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-2.png"
-                              alt="" /> </span>Unlimited User
-                        </p> --}}
                       </div>
-                      <a href="https://api.whatsapp.com/send?phone=62895349203286" class="btn btn-fill d-flex justify-content-center align-items-center w-100">
+                      <a href="https://api.whatsapp.com/send?phone=6281381327318" class="btn btn-fill d-flex justify-content-center align-items-center w-100">
                         Berlangganan
                       </a>
                     </div>
                   </div>
 
-                  
+
                   <div class="mx-auto card-item position-relative">
                     <div class="card-item-outline d-flex flex-column position-relative overflow-hidden h-60"
                       style="background-color: #2a2e32">
@@ -793,7 +770,7 @@
                               alt="" /> </span>Unlimited User
                         </p> --}}
                       </div>
-                      <a href="https://indihome.co.id/" class="btn btn-fill d-flex justify-content-center align-items-center w-100">
+                      <a href="https://api.whatsapp.com/send?phone=6281381327318" class="btn btn-fill d-flex justify-content-center align-items-center w-100">
                         Berlangganan
                       </a>
                     </div>
@@ -801,9 +778,9 @@
                 </div>
               </div>
             </div>
-          </section> 
+          </section>
 
-        <div class="content-2-1 container-xxl mx-auto p-0  position-relative"
+        {{-- <div class="content-2-1 container-xxl mx-auto p-0  position-relative"
             style="font-family: 'Poppins', sans-serif">
             <div class="text-center title-text">
                 <h1 class="text-title" id="tataCara">Tata Cara</h1>
@@ -831,7 +808,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </section>
     <footer class="page-footer font-small blue">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKritiksTable extends Migration
+class AddPoinToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,8 @@ class CreateKritiksTable extends Migration
      */
     public function up()
     {
-        Schema::create('kritiks', function (Blueprint $table) {
-            $table->id();
-            $table->integer('users_id');
-            $table->string('kritik');
-            $table->string('saran');
-            $table->string('status');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->bigInteger('poin')->nullable()->after('nomor_pelanggan');
         });
     }
 
@@ -30,6 +25,8 @@ class CreateKritiksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kritiks');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('poin');
+        });
     }
 }

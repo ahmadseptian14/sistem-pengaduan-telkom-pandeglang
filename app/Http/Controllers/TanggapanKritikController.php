@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Kritik;
-use App\Models\Pengaduan;
 use Illuminate\Http\Request;
+use App\Models\TanggapanKritik;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class KritikController extends Controller
+class TanggapanKritikController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,20 +18,7 @@ class KritikController extends Controller
      */
     public function index()
     {
-        $kritiks = Kritik::where('users_id', Auth::user()->id )->orderBy('created_at', 'desc')->get();
-
-        return view('kritik.index', [
-            'kritiks' => $kritiks
-        ]);
-    }
-
-    public function admin_index()
-    {
-        $kritiks = Kritik::orderBy('created_at', 'desc')->get();
-
-        return view('pages.admin.kritik.index', [
-            'kritiks' => $kritiks
-        ]);
+        //
     }
 
     /**
@@ -41,7 +28,7 @@ class KritikController extends Controller
      */
     public function create()
     {
-        return view('kritik.create');
+
     }
 
     /**
@@ -52,24 +39,21 @@ class KritikController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'kritik' => 'required',
-            'saran' => 'required'
+        DB::table('kritiks')->where('id', $request->kritiks_id)->update([
+            'status' => 'Sudah ditanggapi',
         ]);
 
-        $id = Auth::user()->id;
+        $users_id = Auth::user()->id;
 
         $data = $request->all();
 
-        $data['users_id'] = $id;
-        $data['status'] = 'Belum ditanggapi';
+        $data['kritiks_id'] = $request->kritiks_id;
+        $data['users_id'] = $users_id;
 
-        Kritik::create($data);
 
-        Alert::success('Berhasil', 'Kritik dan Saran terkirim   ');
-
-        return redirect()->route('kritik.index');
-
+        Alert::success('Berhasil', 'Kritik berhasil ditanggapi');
+        TanggapanKritik::create($data);
+        return redirect()->route('kritik.admin.index');
     }
 
     /**
@@ -80,7 +64,11 @@ class KritikController extends Controller
      */
     public function show($id)
     {
-        //
+        $kritik = Kritik::with(['user'])->findOrFail($id);
+
+        return view('pages.admin.tanggapan-kritik.create', [
+            'kritik' => $kritik
+        ]);
     }
 
     /**

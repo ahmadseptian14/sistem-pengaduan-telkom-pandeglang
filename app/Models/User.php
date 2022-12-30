@@ -24,7 +24,8 @@ class User extends Authenticatable
         'roles',
         'password',
         'user',
-        'nomor_pelanggan'
+        'nomor_pelanggan',
+        'poin'
     ];
 
     /**
@@ -45,4 +46,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function kritik()
+    {
+        return $this->hasOne(Kritik::class, 'users_id', 'id');
+    }
 }

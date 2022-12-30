@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kritik;
 use Twilio\Rest\Client;
 use App\Models\Pengaduan;
 use Illuminate\Http\Request;
@@ -10,10 +11,10 @@ class SmsController extends Controller
 {
     public function create($id)
     {
-        $pengaduan = Pengaduan::with(['user'])->findOrFail($id);
+        $kritik = Kritik::with(['user'])->findOrFail($id);
 
-        return view('pages.admin.pengaduan.sms', [
-            'pengaduan' => $pengaduan
+        return view('pages.admin.kritik.sms', [
+            'kritik' => $kritik
         ]);
     }
 

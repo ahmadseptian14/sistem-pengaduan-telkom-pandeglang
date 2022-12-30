@@ -317,7 +317,6 @@
                    <form action="{{route('kritik.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                          {{-- <input type="text" name="pengaduans_id" class="form-control" hidden value="{{$pengaduan->id}}"> --}}
                             <div class="col-md-12 mb-3">
                                 <div class="form-group">
                                     <label style="color: white">Kritik</label>
@@ -340,7 +339,7 @@
                         </div>
                     </form>
                 </div>
-            </div>  
+            </div>
 
             {{-- <div>
                 <div class="mx-auto d-flex flex-lg-row flex-column hero">
@@ -539,7 +538,7 @@
                 }
             }
         </style>
-        <div class="content-2-1 container-xxl mx-auto p-0  position-relative"
+        {{-- <div class="content-2-1 container-xxl mx-auto p-0  position-relative"
             style="font-family: 'Poppins', sans-serif" id="tatacara">
             <div class="text-center title-text">
                 <h1 class="text-title">Tata Cara</h1>
@@ -567,7 +566,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </section>
     <footer class="page-footer font-small blue">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -727,7 +726,7 @@
             </div>
         </div>
     </footer>
-    
+
     @include('sweetalert::alert')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"

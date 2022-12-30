@@ -108,7 +108,7 @@
                 font: 600 1rem/1.5rem Poppins, sans-serif;
                 padding: 1rem 1.5rem;
                 border-radius: 0.75rem;
-                background-color: #ff7c57;
+                background-color: red;
                 transition: 0.3s;
             }
 
@@ -207,11 +207,6 @@
         </style>
         <div class="container-xxl mx-auto p-0  position-relative header-2-1" style="font-family: 'Poppins', sans-serif">
             <nav class="navbar navbar-expand-lg navbar-light">
-                {{-- <a href="#">
-                    <img style="margin-right: 0.75rem"
-                        src="http://api.elements.buildwithangga.com/storage/files/2/assets/Header/Header2/Header-2-2.png"
-                        alt="" />
-                </a> --}}
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="modal"
                     data-bs-target="#targetModal-item">
                     <span class="navbar-toggler-icon"></span>
@@ -239,10 +234,7 @@
                                         <a class="nav-link" href="#">Tata Cara</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Lihat Hasil Pengaduan</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Beri Penilaian</a>
+                                        <a class="nav-link" href="{{route('pengaduan.pelanggan')}}">Lihat Hasil Pengaduan</a>
                                     </li>
                                 </ul>
                             </div>
@@ -262,34 +254,41 @@
                             <a class="nav-link" href="{{ route('home') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Tata Cara</a>
+                            <a class="nav-link" href="#tataCara">Tata Cara</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pengaduan</a>
+                        </li>
+                        @auth
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('pengaduan.pelanggan')}}">Lihat Hasil Pengaduan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('pengaduan.create')}}">Laporkan Pengaduan</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="{{route('kritik.index')}}">Kritik & Saran</a>
                         </li>
+
+                        @endauth
+
+                        {{-- <li class="nav-item">
+                            <a class="nav-link" href="{{ route('penilaian.create') }}">Beri Penilaian</a>
+                        </li> --}}
                     </ul>
                     @guest
                     <div class="gap-3">
-                        <a href="{{ route('login') }}" class="btn btn-default btn-no-fill">
+                        <a href="{{ route('login') }}" class="btn btn-default btn-lg btn-danger">
                             Log In
                         </a>
                     </div>
-                    <div class="gap-3">
+                    {{-- <div class="gap-3">
                         <a href="{{ route('register') }}" class="btn btn-default btn-no-fill">
                             Register
                         </a>
-                    </div>
+                    </div> --}}
                     @endguest
 
                     @auth
                         <div class="dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                            <a class="btn btn-danger dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ Auth::user()->name }}
                             </a>
@@ -310,14 +309,14 @@
                 </div>
             </nav>
 
-            {{-- <div>
+            <div>
                 <div class="mx-auto d-flex flex-lg-row flex-column hero">
                     <!-- Left Column -->
                     <div
-                        class="left-column d-flex flex-lg-grow-1 flex-column align-items-lg-start text-lg-start align-items-center text-center">
+                        class="left-column d-flex flex-lg-grow-1 flex-column align-items-lg-start text-lg-start ">
                         <h1 class="title-text-big">
-                            Layanan Pengaduan<br class="d-lg-block d-none" />
-                            Pelanggan Telkom Serang
+                            Layanan Pengaduan Pelanggan<br class="d-lg-block d-none" />
+                             Telkom Pandeglang
                         </h1>
                         <div
                             class="d-flex flex-sm-row flex-column align-items-center mx-lg-0 mx-auto justify-content-center gap-3">
@@ -326,67 +325,12 @@
                             </a>
                         </div>
                     </div>
-                    <!-- Right Column -->
+                    {{-- <!-- Right Column -->
                     <div class="right-column text-center d-flex justify-content-center pe-0">
                         <img id="img-fluid" class="h-auto mw-100"
-                            src="http://api.elements.buildwithangga.com/storage/files/2/assets/Header/Header2/Header-2-1.png"
+                            src="{{ asset('assets/img/logo-telkom.png') }}"
                             alt="" />
-                    </div>
-                </div>
-            </div> --}}
-
-            <div class="section-content section-dashboard-home" data-aos="fade-up">
-                <div class="container-fluid">
-                    <div class="dashboard-heading">
-                        <h2 class="dashboard-title" style="color: white">Pengaduan</h2>
-                    </div>
-                    <div class="dashboard-content">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        {{-- <a href="{{ route('laporan.cetak') }}" class="btn btn-primary mb-3">Export Semua Laporan Pengaduan</a> --}}
-                                        <div>
-                                            <table
-                                                class="table table-hover scroll-horizontal-vertical w-100 table-bordered table-striped"
-                                                id="table1">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Tanggal</th>
-                                                        <th>Status</th>
-                                                        <th>Keterangan</th>
-                                                        <th>Aksi</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @forelse ($pengaduans as $pengaduan)
-                                                        <tr>
-                                                            <td>{{ $pengaduan->created_at->format('d F Y - H:i:s') }}</td>
-                                                            <td>{{ $pengaduan->keterangan}}</td>
-                                                            @if (empty($pengaduan->tanggapan->status_pengaduan))
-                                                            <td>Belum di Respon</td>
-                                                        @else
-                                                            <td>{{ $pengaduan->tanggapan->status_pengaduan }}</td>
-                                                        @endif
-                                                        <td>
-                                                            <a href="{{ route('pengaduan.detail', $pengaduan->id) }}"
-                                                                class="btn btn-danger btn-sm"><i class="fa fa-eye"
-                                                                    style="margin-right: 5px"></i>Lihat Pengaduan</a>
-                                                        </td>
-                                                        </tr>
-                                                    @empty
-                                                        <tr>
-                                                            <td colspan="7" class="text-center">Tidak Ada Pengaduan</td>
-                                                        </tr>
-                                                    @endforelse
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -562,10 +506,168 @@
                 }
             }
         </style>
+
+        <section class="h-100 w-100" style="box-sizing: border-box; background-color: #ffffff">
+            <style scoped>
+              @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+              .content-3-8 .btn:focus,
+              .content-3-8 .btn:active {
+                outline: none !important;
+              }
+
+              .content-3-8 {
+                padding: 5rem 2rem 7rem;
+              }
+
+              .content-3-8 .title-text {
+                font: 800 1.875rem/2.25rem Poppins, sans-serif;
+                letter-spacing: 0.05em;
+                margin-bottom: 0.75rem;
+              }
+
+              .content-3-8 .caption-text {
+                font: 400 1rem/1.5rem Poppins, sans-serif;
+                letter-spacing: 0.025em;
+                color: #6a6f7e;
+                margin-bottom: 0;
+              }
+
+              .content-3-8 .card-item {
+                transition: 0.4s;
+                top: 0px;
+                left: 0px;
+                padding: 1rem 0;
+              }
+
+              .content-3-8 .card-item:hover {
+                top: -3px;
+                left: -3px;
+                transition: 0.4s;
+              }
+
+              .content-3-8 .card-item-outline {
+                border: 1px solid #2a2e32;
+                padding: 2rem 2.75rem;
+                border-radius: 1rem;
+              }
+
+              .content-3-8 .price-title {
+                font: 500 1.25rem/1.75rem Poppins, sans-serif;
+                letter-spacing: 0.025em;
+                margin-bottom: 0.75rem;
+              }
+
+              .content-3-8 .price-value {
+                font: 500 1.5rem/1.5rem Poppins, sans-serif;
+                letter-spacing: 0.025em;
+                margin-bottom: 0.75rem;
+                color: red;
+              }
+
+              .content-3-8 .price-duration {
+                font: 400 1rem/1.5rem Poppins, sans-serif;
+                margin: 0.625rem;
+                color: #7a7985;
+              }
+
+              .content-3-8 .price-caption {
+                font: 400 1rem/1.5rem Poppins, sans-serif;
+                letter-spacing: 0.025em;
+                margin-bottom: 2.5rem;
+                color: #7a7985;
+              }
+
+              .content-3-8 .price-list .check-3-8 {
+                font: 400 0.875rem/1.25rem Poppins, sans-serif;
+                letter-spacing: 0.025em;
+                margin-bottom: 1.75rem;
+              }
+
+              .content-3-8 .price-list .no-check-3-8 {
+                font: 400 0.875rem/1.25rem Poppins, sans-serif;
+                color: #3f4348;
+                letter-spacing: 0.025em;
+                margin-bottom: 1.75rem;
+              }
+
+              .content-3-8 .span-icon-3-8 {
+                width: 1rem;
+                height: 1rem;
+                margin-right: 0.75rem;
+              }
+
+              .content-3-8 .btn-outline {
+                border: 1px solid red;
+                color: red;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                font-weight: 500;
+                letter-spacing: 0.025em;
+                border-radius: 0.5rem;
+              }
+
+              .content-3-8 .btn-outline:hover {
+                background-color: red;
+                color: #594415;
+              }
+
+              .content-3-8 .btn-fill {
+                background-image: linear-gradient(rgb(255, 0, 0),
+                    rgb(255, 0, 0));
+                color: #ffffff;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                font-weight: 500;
+                letter-spacing: 0.025em;
+                border-radius: 0.5rem;
+              }
+
+              .content-3-8 .btn-fill:hover {
+                color: #594415;
+                background-image: linear-gradient(#f4b325, #f4b325);
+              }
+
+              @media (min-width: 576px) {
+                .content-3-8 .title-text {
+                  font: 800 2.25rem/2.5rem Poppins, sans-serif;
+                }
+
+                .content-3-8 .card-item {
+                  padding: 1rem;
+                }
+              }
+
+              @media (min-width: 768px) {
+                .content-3-8 {
+                  padding-left: 3.5rem;
+                  padding-right: 3.5rem;
+                }
+              }
+
+              @media (min-width: 992px) {
+                .content-3-8 .caption-text {
+                  width: 66.666667%;
+                }
+
+                .content-3-8 .card-item {
+                  width: 33.333333%;
+                }
+              }
+
+              @media (min-width: 1200px) {
+                .content-3-8 {
+                  padding-left: 9rem;
+                  padding-right: 9rem;
+                }
+              }
+            </style>
+          </section>
+
         <div class="content-2-1 container-xxl mx-auto p-0  position-relative"
             style="font-family: 'Poppins', sans-serif">
             <div class="text-center title-text">
-                <h1 class="text-title">Tata Cara</h1>
+                <h1 class="text-title" id="tataCara">Tata Cara</h1>
             </div>
 
             <div class="grid-padding text-center">

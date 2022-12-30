@@ -15,7 +15,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div>
-                                    
+
                                     <table
                                         class="table table-hover scroll-horizontal-vertical w-100 table-bordered table-striped"
                                         id="table1">
@@ -32,7 +32,7 @@
                                             @forelse ($pengaduans as $pengaduan)
                                                 <tr>
                                                     <td>{{ $pengaduan->nama }}</td>
-                                                    <td>{{$pengaduan->user->nomor_pelanggan}}</td>
+                                                    <td>{{ $pengaduan->user->nomor_pelanggan }}</td>
                                                     <td>{{ $pengaduan->created_at->format(' d-m-Y - H:i:s') }}</td>
                                                     @if (empty($pengaduan->tanggapan->status_pengaduan))
                                                         <td>Belum di Proses</td>
@@ -43,12 +43,6 @@
                                                         <a href="{{ route('pengaduan.show', $pengaduan->id) }}"
                                                             class="btn btn-danger btn-sm"><i class="fa fa-eye"
                                                                 style="margin-right: 5px"></i>Lihat Pengaduan</a>
-                                                    {{-- @if (Auth::user()->roles == 'TEKNISI')
-                                                    <a href="{{ route('sms.create', $pengaduan->id) }}"
-                                                        class="btn btn-info btn-sm"><i class="fa fa-message"
-                                                            style="margin-right: 5px"></i>Kirim Pesan</a>
-                                                    @endif --}}
-                                                       
                                                     </td>
                                                 </tr>
                                             @empty

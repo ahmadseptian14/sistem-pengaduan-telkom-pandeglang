@@ -9,6 +9,7 @@ use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\TanggapanController;
+use App\Http\Controllers\TanggapanKritikController;
 use App\Http\Controllers\SmsController;
 use App\Models\Pengaduan;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +28,7 @@ use Illuminate\Support\Facades\Route;
 
 // Halaman Utama
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/pengaduan', [PengaduanController::class, 'pengaduan'])->name('pengaduan');
 
 
 
@@ -64,6 +66,10 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     // Tanggapan
     Route::get('/tanggapan/{id}', [TanggapanController::class, 'show'])->name('tanggapan.show');
     Route::post('/tanggapan', [TanggapanController::class, 'store'])->name('tanggapan.store');
+
+    // Tanggapan kritik
+    Route::get('/tanggapan-kritik/{id}', [TanggapanKritikController::class, 'show'])->name('tanggapan-kritik.show');
+    Route::post('/tanggapan-kritik', [TanggapanKritikController::class, 'store'])->name('tanggapan-kritik.store');
 
     // Petugas
     Route::get('/petugas', [PetugasController::class, 'index'])->name('petugas.index');
