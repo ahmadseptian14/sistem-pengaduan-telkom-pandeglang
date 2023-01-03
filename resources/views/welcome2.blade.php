@@ -230,9 +230,9 @@
                                     <li class="nav-item active">
                                         <a class="nav-link" href="{{ route('home') }}">Home</a>
                                     </li>
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <a class="nav-link" href="#">Tata Cara</a>
-                                    </li>
+                                    </li> --}}
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{route('pengaduan.pelanggan')}}">Lihat Hasil Pengaduan</a>
                                     </li>
@@ -253,9 +253,9 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="{{ route('home') }}">Home</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="#tataCara">Tata Cara</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link" href="{{route("pengaduan")}}">Pengaduan</a>
                         </li>
