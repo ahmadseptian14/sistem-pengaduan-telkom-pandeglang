@@ -4,15 +4,47 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Sistem Pengaduan Telkom</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
 </head>
 
 <body>
     <section class="h-100 w-100 bg-white" style="box-sizing: border-box; ">
         <style scoped>
             @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+            .rating-css div {
+                color: #ffe400;
+                font-size: 30px;
+                font-family: sans-serif;
+                font-weight: 800;
+                text-align: center;
+                text-transform: uppercase;
+                padding: 20px 0;
+            }
+
+            .rating-css input {
+                display: none;
+            }
+
+            .rating-css input+label {
+                font-size: 60px;
+                text-shadow: 1px 1px 0 #8f8420;
+                cursor: pointer;
+            }
+
+            .rating-css input:checked+label~label {
+                color: #b4afaf;
+            }
+
+            .rating-css label:active {
+                transform: scale(0.8);
+                transition: 0.3s ease;
+            }
 
             .header-2-1 .modal-item.modal {
                 top: 2rem;
@@ -142,6 +174,35 @@
             }
 
             @media (min-width: 576px) {
+                .rating-css div {
+                color: #ffe400;
+                font-size: 30px;
+                font-family: sans-serif;
+                font-weight: 800;
+                text-align: center;
+                text-transform: uppercase;
+                padding: 20px 0;
+            }
+
+            .rating-css input {
+                display: none;
+            }
+
+            .rating-css input+label {
+                font-size: 60px;
+                text-shadow: 1px 1px 0 #8f8420;
+                cursor: pointer;
+            }
+
+            .rating-css input:checked+label~label {
+                color: #b4afaf;
+            }
+
+            .rating-css label:active {
+                transform: scale(0.8);
+                transition: 0.3s ease;
+            }
+
                 .header-2-1 .modal-item .modal-dialog {
                     max-width: 95%;
                     border-radius: 12px;
@@ -162,6 +223,35 @@
             }
 
             @media (min-width: 768px) {
+                .rating-css div {
+                color: #ffe400;
+                font-size: 30px;
+                font-family: sans-serif;
+                font-weight: 800;
+                text-align: center;
+                text-transform: uppercase;
+                padding: 20px 0;
+            }
+
+            .rating-css input {
+                display: none;
+            }
+
+            .rating-css input+label {
+                font-size: 60px;
+                text-shadow: 1px 1px 0 #8f8420;
+                cursor: pointer;
+            }
+
+            .rating-css input:checked+label~label {
+                color: #b4afaf;
+            }
+
+            .rating-css label:active {
+                transform: scale(0.8);
+                transition: 0.3s ease;
+            }
+
                 .header-2-1 .navbar {
                     padding: 3rem 4rem;
                 }
@@ -176,6 +266,35 @@
             }
 
             @media (min-width: 992px) {
+                .rating-css div {
+                color: #ffe400;
+                font-size: 30px;
+                font-family: sans-serif;
+                font-weight: 800;
+                text-align: center;
+                text-transform: uppercase;
+                padding: 20px 0;
+            }
+
+            .rating-css input {
+                display: none;
+            }
+
+            .rating-css input+label {
+                font-size: 60px;
+                text-shadow: 1px 1px 0 #8f8420;
+                cursor: pointer;
+            }
+
+            .rating-css input:checked+label~label {
+                color: #b4afaf;
+            }
+
+            .rating-css label:active {
+                transform: scale(0.8);
+                transition: 0.3s ease;
+            }
+
                 .header-2-1 .navbar-expand-lg .navbar-nav .nav-link {
                     padding-right: 1.25rem;
                     padding-left: 1.25rem;
@@ -265,23 +384,23 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#tatacara">Tata Cara</a>
                         </li>
-                       @auth
-                       <li class="nav-item">
-                        <a class="nav-link" href="{{route('pengaduan.pelanggan')}}">Lihat Hasil Pengaduan</a>
-                    </li>
-                       @endauth
+                        @auth
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('pengaduan.pelanggan') }}">Lihat Hasil Pengaduan</a>
+                            </li>
+                        @endauth
                     </ul>
                     @guest
-                    <div class="gap-3">
-                        <a href="{{ route('login') }}" class="btn btn-default btn-no-fill">
-                            Log In
-                        </a>
-                    </div>
-                    <div class="gap-3">
-                        <a href="{{ route('register') }}" class="btn btn-default btn-no-fill">
-                            Register
-                        </a>
-                    </div>
+                        <div class="gap-3">
+                            <a href="{{ route('login') }}" class="btn btn-default btn-no-fill">
+                                Log In
+                            </a>
+                        </div>
+                        <div class="gap-3">
+                            <a href="{{ route('register') }}" class="btn btn-default btn-no-fill">
+                                Register
+                            </a>
+                        </div>
                     @endguest
 
                     @auth
@@ -307,15 +426,16 @@
                 </div>
             </nav>
             <h1>
-                Berikan Penilaian anada sebagai kepuasan terhadap pelayanan kami
+                Berikan Penilaian anda sebagai kepuasan terhadap pelayanan kami!
             </h1>
             <div class="card" style="background-color : black">
                 <div class="card-body">
-                   <form action="{{route('penilaian.store')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('penilaian.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <input type="text" name="pengaduans_id" class="form-control" hidden value="{{$pengaduan->id}}">
-                            <div class="col-md-12 mb-3">
+                            <input type="text" name="pengaduans_id" class="form-control" hidden
+                                value="{{ $pengaduan->id }}">
+                            {{-- <div class="col-md-12 mb-3">
                                 <div class="form-group">
                                     <label style="color: white">Rating</label>
                                     <select name="rating" id="" class="form-control">
@@ -325,6 +445,26 @@
                                         <option value="Kurang">Kurang</option>
 
                                     </select>
+                                </div>
+                            </div> --}}
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="rating" style="color: white">Rating</label>
+                                    <div class="rating-css">
+                                        <div class="star-icon">
+                                            <input type="radio" value="1" name="rating" checked
+                                                id="rating1" class="form-control">
+                                            <label for="rating1" class="fa fa-star"></label>
+                                            <input type="radio" value="2" name="rating" id="rating2" class="form-control">
+                                            <label for="rating2" class="fa fa-star"></label>
+                                            <input type="radio" value="3" name="rating" id="rating3" class="form-control">
+                                            <label for="rating3" class="fa fa-star"></label>
+                                            <input type="radio" value="4" name="rating" id="rating4" class="form-control">
+                                            <label for="rating4" class="fa fa-star"></label>
+                                            <input type="radio" value="5" name="rating" id="rating5" class="form-control">
+                                            <label for="rating5" class="fa fa-star"></label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">
@@ -336,14 +476,15 @@
                         </div>
                         <div class="row">
                             <div class="col text-right">
-                                <button type="submit" class="btn px-5" style="background-color: #00B67A; color :white">
+                                <button type="submit" class="btn px-5"
+                                    style="background-color: #00B67A; color :white">
                                     Beri Penilaian
                                 </button>
                             </div>
                         </div>
                     </form>
                 </div>
-            </div> 
+            </div>
             {{-- <div>
                 <div class="mx-auto d-flex flex-lg-row flex-column hero">
                     <!-- Left Column -->
@@ -732,7 +873,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
     </script>
-@include('sweetalert::alert')
+     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    @include('sweetalert::alert')
 
 </body>
 

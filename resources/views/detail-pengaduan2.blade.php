@@ -7,12 +7,43 @@
     <title>Sistem Pengaduan Telkom</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 </head>
 
 <body>
     <section class="h-100 w-100 bg-white" style="box-sizing: border-box; ">
         <style scoped>
             @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+            @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css") .rating-css div {
+                color: #ffe400;
+                font-size: 30px;
+                font-family: sans-serif;
+                font-weight: 800;
+                text-align: center;
+                text-transform: uppercase;
+                padding: 20px 0;
+            }
+
+            .rating-css input {
+                display: none;
+            }
+
+            .rating-css input+label {
+                font-size: 60px;
+                text-shadow: 1px 1px 0 #8f8420;
+                cursor: pointer;
+            }
+
+            .rating-css input:checked+label~label {
+                color: #b4afaf;
+            }
+
+            .rating-css label:active {
+                transform: scale(0.8);
+                transition: 0.3s ease;
+            }
 
             .header-2-1 .modal-item.modal {
                 top: 2rem;
@@ -306,31 +337,6 @@
                 </div>
             </nav>
 
-            {{-- <div>
-                <div class="mx-auto d-flex flex-lg-row flex-column hero">
-                    <!-- Left Column -->
-                    <div
-                        class="left-column d-flex flex-lg-grow-1 flex-column align-items-lg-start text-lg-start align-items-center text-center">
-                        <h1 class="title-text-big">
-                            Layanan Pengaduan<br class="d-lg-block d-none" />
-                            Pelanggan Telkom Serang
-                        </h1>
-                        <div
-                            class="d-flex flex-sm-row flex-column align-items-center mx-lg-0 mx-auto justify-content-center gap-3">
-                            <a href="{{route('pengaduan.create')}}" class="btn d-inline-flex mb-md-0 btn-try text-white">
-                                Laporkan!!
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Right Column -->
-                    <div class="right-column text-center d-flex justify-content-center pe-0">
-                        <img id="img-fluid" class="h-auto mw-100"
-                            src="http://api.elements.buildwithangga.com/storage/files/2/assets/Header/Header2/Header-2-1.png"
-                            alt="" />
-                    </div>
-                </div>
-            </div> --}}
-
             <div class="section-content section-dashboard-home" data-aos="fade-up">
                 <div class="container-fluid">
                     <div class="dashboard-heading">
@@ -401,7 +407,6 @@
                                 </div>
                             </div>
 
-
                         </div>
                         <div class="col-md-12">
                             <div class="card mb-3">
@@ -421,9 +426,13 @@
                         </div>
                         @foreach ($tanggapans as $tanggapan)
                             @if ($tanggapan->status_pengaduan == 'Selesai')
-                                <a href="{{ route('penilaian.create', $pengaduan->id) }}"
+                                {{-- <a href="{{ route('penilaian.create', $pengaduan->id) }}"
                                     class="btn btn-danger btn-lg active mb-5">Berikan
-                                    Penilaian</a>
+                                    Penilaian</a> --}}
+                                <button class="btn btn-danger btn-lg active mb-5" data-toggle="modal"
+                                    data-target="#modal-{{ $pengaduan->id }}">
+                                    Berikan Penilaian
+                                </button>
                             @endif
                         @endforeach
 
@@ -432,6 +441,63 @@
             </div>
         </div>
     </section>
+    <!-- Modal -->
+    @foreach ($pengaduans->details as $pengaduan)
+        <div class="modal fade" id="modal-{{ $pengaduan->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Beri ulasan anda terhadap produk
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('penilaian.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <input type="text" name="pengaduans_id" class="form-control" hidden
+                                    value="{{ $pengaduan->id }}">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="rating-css">
+                                            <div class="star-icon">
+                                                <input type="radio" value="1" name="rating" checked
+                                                    id="rating1">
+                                                <label for="rating1" class="fa fa-star"></label>
+                                                <input type="radio" value="2" name="rating" id="rating2">
+                                                <label for="rating2" class="fa fa-star"></label>
+                                                <input type="radio" value="3" name="rating" id="rating3">
+                                                <label for="rating3" class="fa fa-star"></label>
+                                                <input type="radio" value="4" name="rating" id="rating4">
+                                                <label for="rating4" class="fa fa-star"></label>
+                                                <input type="radio" value="5" name="rating" id="rating5">
+                                                <label for="rating5" class="fa fa-star"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Komentar</label>
+                                        <input type="text" name="comment" class="form-control" required>
+                                    </div>
+                                </div>
+
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Berikan Ulasan</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endforeach
     <section class="h-100 w-100 bg-white" style="box-sizing: border-box">
         <style scoped>
             @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
@@ -794,6 +860,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+
 </body>
 
 </html>
