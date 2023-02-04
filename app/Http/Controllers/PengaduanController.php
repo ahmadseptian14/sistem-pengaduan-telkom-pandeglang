@@ -59,10 +59,10 @@ class PengaduanController extends Controller
         $data['nama'] = $nama;
 
 
-        Alert::success('Berhasil', 'Pengaduan terkirim');
-
         Pengaduan::create($data);
 
+        Alert::success('Berhasil', 'Pengaduan terkirim');
+        
         return redirect()->route('home');
 
     }

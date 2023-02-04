@@ -310,7 +310,7 @@
                 </div>
             </nav>
             <h1>
-                Laporkan pengaduan anda sekarang disini!
+                Laporkan pengaduan anda  disini!
             </h1>
             <div class="card" style="background-color : black">
                 <div class="card-body">

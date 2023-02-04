@@ -4,7 +4,7 @@
     <div class="section-content section-dashboard-home" data-aos="fade-up">
         <div class="container-fluid">
             <div class="dashboard-heading">
-                <h2 class="dashboard-title text-white">Detail Pengaduan</h2>
+                <h2 class="dashboard-title">Detail Pengaduan</h2>
             </div>
             <div class="dashboard-content">
                 <div class="row">
@@ -112,7 +112,7 @@
                                         <label>Status</label>
                                         <select name="status_pengaduan" id="status_pengaduan"
                                             class="form-control select2" multiple="multiple">
-                                            <option value="Belum di Proses">Belum di Proses</option>
+                                            {{-- <option value="Belum di Proses">Belum di Proses</option> --}}
                                             <option value="Sedang di Proses">Sedang di Proses</option>
                                             <option value="Selesai">Selesai</option>
                                         </select>
