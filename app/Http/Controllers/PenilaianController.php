@@ -31,7 +31,7 @@ class PenilaianController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create($id)
-    {   
+    {
         $pengaduan = Pengaduan::with(['details', 'user'])->findOrFail($id);
 
         return view('penilaian2', [
@@ -48,20 +48,20 @@ class PenilaianController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'rating' => 'required',
             'keterangan' => 'required',
         ]);
 
         $id = Auth::user()->id;
-      
+
 
         $data = $request->all();
         $data['users_id']=$id;
 
-        Alert::success('Berhasil', 'Penilaian terkirim');
-
         Penilaian::create($data);
 
-        
+        // dd($data);
+
         Alert::success('Berhasil', 'Penilaian terkirim');
 
         return redirect()->route('pengaduan.pelanggan');

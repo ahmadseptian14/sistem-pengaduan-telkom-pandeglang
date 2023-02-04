@@ -32,6 +32,12 @@
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
+                                                <label>Username</label>
+                                                <input type="text" name="username" class="form-control" required>
+                                            </div>
+                                        </div>shb
+                                        <div class="col-md-12">
+                                            <div class="form-group">
                                                 <label>Email</label>
                                                 <input type="email" name="email" class="form-control" required>
                                             </div>

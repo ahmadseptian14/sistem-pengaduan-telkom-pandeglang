@@ -319,8 +319,8 @@
                         <div class="row">
                             <div class="col-md-12 mb-3">
                                 <div class="form-group">
-                                    <label style="color: white">Lokasi</label>
-                                    <input type="text" name="lokasi" class="form-control">
+                                    <label style="color: white">Nomor Pelanggan</label>
+                                    <input type="text" name="nomor_pelanggan" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">
@@ -726,7 +726,7 @@
             </div>
         </div>
     </footer>
-    
+
     @include('sweetalert::alert')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"

@@ -435,19 +435,20 @@
                         <div class="row">
                             <input type="text" name="pengaduans_id" class="form-control" hidden
                                 value="{{ $pengaduan->id }}">
-                            {{-- <div class="col-md-12 mb-3">
+                            <div class="col-md-12 mb-3">
                                 <div class="form-group">
                                     <label style="color: white">Rating</label>
                                     <select name="rating" id="" class="form-control">
-                                        <option value="Sangat Baik">Sangat Baik</option>
-                                        <option value="Baik">Baik</option>
+                                        <option value="Sangat Puas">Sangat Puas</option>
+                                        <option value="Puas">Puas</option>
                                         <option value="Cukup">Cukup</option></option>
-                                        <option value="Kurang">Kurang</option>
+                                        <option value="Kurang Puas">Kurang</option>
+                                        <option value="Tidak Puas">Tidak Puas</option>
 
                                     </select>
                                 </div>
-                            </div> --}}
-                            <div class="col-md-12">
+                            </div>
+                            {{-- <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="rating" style="color: white">Rating</label>
                                     <div class="rating-css">
@@ -466,7 +467,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-md-12 mb-3">
                                 <div class="form-group">
                                     <label style="color: white">Keterangan</label>

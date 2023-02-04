@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pengaduan;
 use App\Models\Penilaian;
+use App\Models\Tanggapan;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,18 +16,34 @@ class DashboardController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $pengaduan = Pengaduan::count();
         $penilaian = Penilaian::count();
-        $petugas = User::where('roles', 'ADMIN')->count();
-        $customer = User::where('roles', 'USER')->count();
+        $petugas = User::where('roles', 'TEKNISI')->count();
+        $customer = User::where('roles', 'PELANGGAN')->count();
+        $belumdiproses = Pengaduan::where('status', 'Belum di Proses')->count();
+        $sedangdiproses = Pengaduan::where('status', 'Sedang di Proses')->count();
+        $selesai = Tanggapan::where('status_pengaduan', 'Selesai')->count();
+        $satu = Penilaian::where('rating', 'Tidak Puas')->count();
+        $dua = Penilaian::where('rating', 'Kurang Puas')->count();
+        $tiga = Penilaian::where('rating', 'Cukup')->count();
+        $empat = Penilaian::where('rating', 'Puas')->count();
+        $lima = Penilaian::where('rating', 'Sangat Puas')->count();
 
 
         return view('pages.admin.dashboard', [
             'pengaduan' => $pengaduan,
             'penilaian' => $penilaian,
             'petugas' => $petugas,
-            'customer' => $customer
+            'customer' => $customer,
+            'belumdiproses' => $belumdiproses,
+            'sedangdiproses' => $sedangdiproses,
+            'selesai' => $selesai,
+            'satu' => $satu,
+            'dua' => $dua,
+            'tiga' => $tiga,
+            'empat' => $empat,
+            'lima' => $lima
         ]);
     }
 

@@ -28,6 +28,36 @@ class PengaduanController extends Controller
         ]);
     }
 
+    public function belum_diproses()
+    {
+        $pengaduans = Pengaduan::where('status', 'Belum di Proses')->orderBy('created_at', 'desc')->get();
+
+        return view('pages.admin.pengaduan.belumdiproses', [
+            'pengaduans' => $pengaduans
+        ]);
+    }
+
+
+    public function sedang_diproses()
+    {
+        $pengaduans = Pengaduan::where('status', 'Sedang di Proses')->orderBy('created_at', 'desc')->get();
+
+        return view('pages.admin.pengaduan.sedangdiproses', [
+            'pengaduans' => $pengaduans
+        ]);
+    }
+
+    public function selesai()
+    {
+        // $pengaduans = Pengaduan::orderBy('created_at', 'desc')->get();
+
+        $tanggapans = Tanggapan::with('pengaduan')->where('status_pengaduan', 'Selesai')->orderBy('created_at', 'desc')->get();
+
+        return view('pages.admin.pengaduan.selesai', [
+            'tanggapans' => $tanggapans
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -48,7 +78,7 @@ class PengaduanController extends Controller
     {
         $request->validate([
             'keterangan' => 'required',
-            'lokasi' => 'required'
+            'nomor_pelanggan' => 'required'
         ]);
 
         $id = Auth::user()->id;
