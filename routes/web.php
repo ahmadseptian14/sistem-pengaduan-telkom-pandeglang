@@ -57,6 +57,9 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
     // Pengaduan
     Route::get('/pengaduan', [PengaduanController::class, 'index'])->name('pengaduan.index');
+    Route::get('/pengaduan-belum-diproses', [PengaduanController::class, 'belum_diproses'])->name('pengaduan.belumdiproses');
+    Route::get('/pengaduan-sedang-diproses', [PengaduanController::class, 'sedang_diproses'])->name('pengaduan.sedangdiproses');
+    Route::get('/pengaduan-selesai', [PengaduanController::class, 'selesai'])->name('pengaduan.selesai');
     Route::get('/detail-pengaduan/{id}', [PengaduanController::class, 'show'])->name('pengaduan.show');
     Route::delete('/pengaduan/{id}', [PengaduanController::class, 'destroy'])->name('pengaduan.destroy');
     Route::get('/cetak-laporan', [PengaduanController::class, 'cetakForm'])->name('cetak.form');
@@ -92,8 +95,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::put('/edit-teknisi/{id}', [TeknisiController::class, 'update'])->name('teknisi.update');
     Route::delete('/teknisi-delete/{id}', [TeknisiController::class, 'destroy'])->name('teknisi.destroy');
 
-
-    //Penialain
+    //Penilaian
     Route::get('/penilaian', [PenilaianController::class, 'index'])->name('penilaian.index');
 
     //SMS
@@ -104,8 +106,6 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/kritik-saran', [KritikController::class, 'admin_index'])->name('kritik.admin.index');
 
 });
-
-
 
 
 Auth::routes();

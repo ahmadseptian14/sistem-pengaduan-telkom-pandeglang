@@ -6,7 +6,7 @@
             <div class="dashboard-heading">
                 <h2 class="dashboard-title">Pengaduan</h2>
                 <p class="dashboard-subtitle">
-                    Daftar Pengaduan
+                    Daftar Pengaduan Sedang di Proses
                 </p>
             </div>
             <div class="dashboard-content">
@@ -25,7 +25,6 @@
                                                 <th>Nomor Pelanggan</th>
                                                 <th>Tanggal</th>
                                                 <th>Status</th>
-                                                <th>Nama Teknisi</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -35,15 +34,11 @@
                                                     <td>{{ $pengaduan->nama }}</td>
                                                     <td>{{ $pengaduan->user->nomor_pelanggan }}</td>
                                                     <td>{{ $pengaduan->created_at->format(' d-m-Y - H:i:s') }}</td>
-                                                    @if (empty($pengaduan->tanggapan->status_pengaduan))
-                                                        <td>Belum di Proses</td>
-                                                    @else
-                                                        <td>{{ $pengaduan->tanggapan->status_pengaduan }}</td>
-                                                    @endif
+                                                    <td>{{ $pengaduan->status }}</td>
                                                     <td>
                                                         <a href="{{ route('pengaduan.show', $pengaduan->id) }}"
                                                             class="btn btn-danger btn-sm"><i class="fa fa-eye"
-                                                            style="margin-right: 5px"></i>Lihat Pengaduan</a>
+                                                                style="margin-right: 5px"></i>Lihat Pengaduan</a>
                                                     </td>
                                                 </tr>
                                             @empty

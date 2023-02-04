@@ -4,9 +4,49 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        /* rating */
+        .rating-css div {
+            color: #ffe400;
+            font-size: 30px;
+            font-family: sans-serif;
+            font-weight: 800;
+            text-align: center;
+            text-transform: uppercase;
+            padding: 20px 0;
+        }
+
+        .rating-css input {
+            display: none;
+        }
+
+        .rating-css input+label {
+            font-size: 60px;
+            text-shadow: 1px 1px 0 #8f8420;
+            cursor: pointer;
+        }
+
+        .rating-css input:checked+label~label {
+            color: #b4afaf;
+        }
+
+        .rating-css label:active {
+            transform: scale(0.8);
+            transition: 0.3s ease;
+        }
+
+        /* End of Star Rating */
+    </style>
     <title>Sistem Pengaduan Telkom</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" > --}}
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> --}}
+    {{-- <link href="{{asset('/assets/css/custom.css')}}" rel="stylesheet"> --}}
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css" integrity="sha512-giQeaPns4lQTBMRpOOHsYnGw1tGVzbAIHUyHRgn7+6FmiEgGGjaG0T2LZJmAPMzRCl+Cug0ItQ2xDZpTmEc+CQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous"> --}}
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"> --}}
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -306,31 +346,6 @@
                 </div>
             </nav>
 
-            {{-- <div>
-                <div class="mx-auto d-flex flex-lg-row flex-column hero">
-                    <!-- Left Column -->
-                    <div
-                        class="left-column d-flex flex-lg-grow-1 flex-column align-items-lg-start text-lg-start align-items-center text-center">
-                        <h1 class="title-text-big">
-                            Layanan Pengaduan<br class="d-lg-block d-none" />
-                            Pelanggan Telkom Serang
-                        </h1>
-                        <div
-                            class="d-flex flex-sm-row flex-column align-items-center mx-lg-0 mx-auto justify-content-center gap-3">
-                            <a href="{{route('pengaduan.create')}}" class="btn d-inline-flex mb-md-0 btn-try text-white">
-                                Laporkan!!
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Right Column -->
-                    <div class="right-column text-center d-flex justify-content-center pe-0">
-                        <img id="img-fluid" class="h-auto mw-100"
-                            src="http://api.elements.buildwithangga.com/storage/files/2/assets/Header/Header2/Header-2-1.png"
-                            alt="" />
-                    </div>
-                </div>
-            </div> --}}
-
             <div class="section-content section-dashboard-home" data-aos="fade-up">
                 <div class="container-fluid">
                     <div class="dashboard-heading">
@@ -401,7 +416,6 @@
                                 </div>
                             </div>
 
-
                         </div>
                         <div class="col-md-12">
                             <div class="card mb-3">
@@ -421,17 +435,21 @@
                         </div>
                         @foreach ($tanggapans as $tanggapan)
                             @if ($tanggapan->status_pengaduan == 'Selesai')
-                                <a href="{{ route('penilaian.create', $pengaduan->id) }}"
-                                    class="btn btn-danger btn-lg active mb-5">Berikan
-                                    Penilaian</a>
+                                <div class="col-md-12">
+                                    <a href="{{route('penilaian.create', $pengaduan->id)}}" class="btn btn-danger btn-lg active mb-5" >
+                                        Berikan Penilaian
+                                    </a>
+                                </div>
                             @endif
                         @endforeach
-
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Modal -->
+
     <section class="h-100 w-100 bg-white" style="box-sizing: border-box">
         <style scoped>
             @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
@@ -791,9 +809,17 @@
             </div>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+    </script> --}}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+
 </body>
 
 </html>

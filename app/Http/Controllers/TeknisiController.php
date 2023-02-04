@@ -43,24 +43,25 @@ class TeknisiController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'username' => 'required|string',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|confirmed|min:8',
             'roles' => 'required|string',
             'phone' => 'required',
             ]);
-            
+
             $user = $request->all();
-            // $roles = 'TEKNISI';
 
             $user = User::create([
             'name' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
             'phone' => $request->phone,
             'roles' => 'TEKNISI',
             'password' => Hash::make($request->password),
-            
+
             ]);
-            
+
             Alert::success('Berhasil', 'Teknisi baru berhasil ditambahkan');
             return redirect()->route('teknisi.index');
     }
@@ -127,7 +128,7 @@ class TeknisiController extends Controller
     public function destroy($id)
     {
         $customer = User::findOrFail($id);
-        
+
         $customer->delete();
 
         Alert::success('Berhasil', 'Teknisi berhasil di hapus');

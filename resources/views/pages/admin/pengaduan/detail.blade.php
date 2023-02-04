@@ -15,7 +15,7 @@
                                     <div class="col-md-8">
                                         <div class="card-body">
                                             <h4>Nama : {{ $pengaduan->nama }}</h4>
-                                            <h4>Lokasi : {{ $pengaduan->lokasi }}</h4>
+                                            {{-- <h4>Lokasi : {{ $pengaduan->lokasi }}</h4> --}}
                                             <h4>No.Telepon : {{ $pengaduan->user->phone }}</h4>
                                             <h4>Tanggal : {{ $pengaduan->created_at->format('d-m-Y - H:i:s') }}</h4>
                                         </div>
@@ -47,6 +47,7 @@
                                                     <small>{{ $tanggapan->created_at }}</small>
                                                 </div>
                                                 <p class="mb-1">{{ $tanggapan->tanggapan }}</p>
+                                                <h5 class="mb-1">Nama Teknisi : {{ $tanggapan->user->name }}</h5>
                                             </div>
                                         @empty
                                             <p>Belum di proses dan belum ada tanggapan</p>
@@ -119,7 +120,7 @@
                                     </div>
                                 </div>
                             </div>
-                          
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
