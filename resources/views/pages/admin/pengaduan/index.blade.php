@@ -40,6 +40,11 @@
                                                     @else
                                                         <td>{{ $pengaduan->tanggapan->status_pengaduan }}</td>
                                                     @endif
+                                                    @if (empty($pengaduan->tanggapan->user->name))
+                                                        <td>Belum di tanggapi</td>
+                                                    @else
+                                                    <td>{{$pengaduan->tanggapan->user->name}}</td>
+                                                    @endif
                                                     <td>
                                                         <a href="{{ route('pengaduan.show', $pengaduan->id) }}"
                                                             class="btn btn-danger btn-sm"><i class="fa fa-eye"
