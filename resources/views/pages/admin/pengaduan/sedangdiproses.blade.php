@@ -31,10 +31,10 @@
                                         <tbody>
                                             @forelse ($pengaduans as $pengaduan)
                                                 <tr>
-                                                    <td>{{ $pengaduan->nama }}</td>
+                                                    <td>{{ $pengaduan->pengaduan->nama }}</td>
                                                     <td>{{ $pengaduan->user->nomor_pelanggan }}</td>
                                                     <td>{{ $pengaduan->created_at->format(' d-m-Y - H:i:s') }}</td>
-                                                    <td>{{ $pengaduan->status }}</td>
+                                                    <td>{{ $pengaduan->status_pengaduan }}</td>
                                                     <td>
                                                         <a href="{{ route('pengaduan.show', $pengaduan->id) }}"
                                                             class="btn btn-danger btn-sm"><i class="fa fa-eye"

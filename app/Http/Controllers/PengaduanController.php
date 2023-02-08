@@ -40,7 +40,7 @@ class PengaduanController extends Controller
 
     public function sedang_diproses()
     {
-        $pengaduans = Pengaduan::where('status', 'Sedang di Proses')->orderBy('created_at', 'desc')->get();
+        $pengaduans = Tanggapan::where('status_pengaduan', 'Sedang di Proses')->orderBy('created_at', 'desc')->get();
 
         return view('pages.admin.pengaduan.sedangdiproses', [
             'pengaduans' => $pengaduans
@@ -89,10 +89,10 @@ class PengaduanController extends Controller
         $data['nama'] = $nama;
 
 
-        Alert::success('Berhasil', 'Pengaduan terkirim');
-
         Pengaduan::create($data);
 
+        Alert::success('Berhasil', 'Pengaduan terkirim');
+        
         return redirect()->route('home');
 
     }

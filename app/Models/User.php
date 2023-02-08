@@ -26,7 +26,8 @@ class User extends Authenticatable
         'password',
         'user',
         'nomor_pelanggan',
-        'poin'
+        'poin',
+        'username'
     ];
 
     /**

@@ -17,7 +17,7 @@ class CreatePengaduansTable extends Migration
             $table->id();
             $table->string('nama');
             $table->integer('user_id');
-            $table->string('lokasi');
+            $table->bigInteger('nomor_pelanggan');
             $table->text('keterangan');
             $table->string('status')->default('Belum di Proses')->nullable();
             $table->softDeletes();
