@@ -22,8 +22,8 @@ class DashboardController extends Controller
         $petugas = User::where('roles', 'TEKNISI')->count();
         $customer = User::where('roles', 'PELANGGAN')->count();
         $belumdiproses = Pengaduan::where('status', 'Belum di Proses')->count();
-        $sedangdiproses = Pengaduan::where('status', 'Sedang di Proses')->count();
         $selesai = Tanggapan::where('status_pengaduan', 'Selesai')->count();
+        $sedangdiproses =Tanggapan::where('status_pengaduan', 'Sedang di Proses')->count() - $selesai;
         $satu = Penilaian::where('rating', 'Tidak Puas')->count();
         $dua = Penilaian::where('rating', 'Kurang Puas')->count();
         $tiga = Penilaian::where('rating', 'Cukup')->count();
