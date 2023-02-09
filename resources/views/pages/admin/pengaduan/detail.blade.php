@@ -43,7 +43,7 @@
                                         @forelse ($tanggapans as $tanggapan)
                                             <div class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1">{{ $tanggapan->status_pengaduan }}</h5>
+                                                    <h5 class="mb-1">{{ $tanggapan->status_pengaduan}}</h5>
                                                     <small>{{ $tanggapan->created_at }}</small>
                                                 </div>
                                                 <p class="mb-1">{{ $tanggapan->tanggapan }}</p>
@@ -98,7 +98,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('tanggapan.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('tanggapan.store', $pengaduan->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <input type="hidden" name="pengaduan_id" value="{{ $pengaduan->id }} ">
