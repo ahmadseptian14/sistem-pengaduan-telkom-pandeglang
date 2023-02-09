@@ -38,15 +38,17 @@ class PengaduanController extends Controller
     }
 
 
+
     public function sedang_diproses(){
       
         $pengaduans = Pengaduan::with('tanggapann')->orderBy('created_at', 'desc')->get();
-
-
         return view('pages.admin.pengaduan.sedangdiproses', [
             'pengaduans' => $pengaduans
         ]);
+
     }
+
+
 
     public function selesai()
     {
