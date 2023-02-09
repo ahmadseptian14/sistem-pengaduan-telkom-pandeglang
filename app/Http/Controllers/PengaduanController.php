@@ -38,19 +38,10 @@ class PengaduanController extends Controller
     }
 
 
-    public function sedang_diproses()
-    {
-
-<<<<<<< HEAD
-        // $pengaduans = Tanggapan::where('status_pengaduan', 'Sedang di Proses')->orderBy('created_at', 'desc')->get();
-        $pengaduans = Pengaduan::orderBy('created_at', 'desc')->get();
-=======
-        // $pengaduans = Pengaduan::with('tanggapan')->whereHas('tanggapan', function($tanggapan){
-        //                 $tanggapan->where('tahap', 1)->orderBy('created_at', 'desc');
-        //                 });
-
+    public function sedang_diproses(){
+      
         $pengaduans = Pengaduan::with('tanggapann')->orderBy('created_at', 'desc')->get();
->>>>>>> 57ed63c4293402cb6936f8ea00c3fe9af886fdae
+
 
         return view('pages.admin.pengaduan.sedangdiproses', [
             'pengaduans' => $pengaduans
