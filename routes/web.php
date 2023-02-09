@@ -68,7 +68,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
     // Tanggapan
     Route::get('/tanggapan/{id}', [TanggapanController::class, 'show'])->name('tanggapan.show');
-    Route::post('/tanggapan', [TanggapanController::class, 'store'])->name('tanggapan.store');
+    Route::post('/tanggapan-store/{id}', [TanggapanController::class, 'store'])->name('tanggapan.store');
 
     // Tanggapan kritik
     Route::get('/tanggapan-kritik/{id}', [TanggapanKritikController::class, 'show'])->name('tanggapan-kritik.show');

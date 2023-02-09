@@ -38,7 +38,7 @@ class TanggapanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         DB::table('pengaduans')->where('id', $request->pengaduan_id)->update([
             'status' => null,
@@ -46,11 +46,22 @@ class TanggapanController extends Controller
 
         $petugas_id = Auth::user()->id;
 
-        $data = $request->all();
+        if ($request->status_pengaduan == 'Sedang di Proses') {
+            $data = $request->all();
+            $data['pengaduan_id'] = $request->pengaduan_id;
+            $data['petugas_id'] = $petugas_id;
+            $data['tahap'] = 1 ;
 
-        $data['pengaduan_id'] = $request->pengaduan_id;
-        $data['petugas_id'] = $petugas_id;
+        } else {
+            $data = $request->all();
+            $data['pengaduan_id'] = $request->pengaduan_id;
+            $data['petugas_id'] = $petugas_id;
+            $data['tahap'] = 2 ;
 
+            DB::table('tanggapans')->where('pengaduan_id',  $id)->update([
+                'tahap' => null,
+            ]);
+        }
 
         Alert::success('Berhasil', 'Pengaduan berhasil ditanggapi');
         Tanggapan::create($data);

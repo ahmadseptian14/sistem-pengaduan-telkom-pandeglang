@@ -37,8 +37,16 @@ class Pengaduan extends Model
     }
 
     public function tanggapan() {
-    return $this->hasOne(Tanggapan::class)->latestOfMany('status_pengaduan');
+        return $this->hasOne(Tanggapan::class)->latestOfMany('status_pengaduan');
     }
+
+    public function tanggapann() {
+        return $this->hasOne(Tanggapan::class)->where('tahap', 1);
+    }
+
+    // public function tanggapann() {
+    //     return $this->hasOne(Tanggapan::class);
+    // }
 
     public function status() {
     return $this->belongsTo(Tanggapan::class, 'status_id','status');

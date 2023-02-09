@@ -10,7 +10,7 @@ class Tanggapan extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id', 'pengaduan_id', 'tanggapan', 'petugas_id', 'status_pengaduan'
+        'id', 'pengaduan_id', 'tanggapan', 'petugas_id', 'status_pengaduan', 'tahap'
     ];
 
     protected $hidden = [

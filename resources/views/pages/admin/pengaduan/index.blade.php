@@ -43,11 +43,15 @@
                                                     @if (empty($pengaduan->tanggapan->user->name))
                                                         <td>Belum di tanggapi</td>
                                                     @else
+<<<<<<< HEAD
 
                                                     
 
                                                         <td>{{$pengaduan->tanggapan->user->name}}</td>
 
+=======
+                                                    <td>{{$pengaduan->tanggapan->user->name}}</td>
+>>>>>>> 57ed63c4293402cb6936f8ea00c3fe9af886fdae
                                                     @endif
                                                     <td>
                                                         <a href="{{ route('pengaduan.show', $pengaduan->id) }}"

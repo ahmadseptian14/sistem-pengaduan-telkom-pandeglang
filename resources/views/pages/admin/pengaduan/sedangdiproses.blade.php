@@ -30,6 +30,7 @@
                                         </thead>
                                         <tbody>
                                             @forelse ($pengaduans as $pengaduan)
+<<<<<<< HEAD
                                                 <tr>
                                                     <td>{{ $pengaduan->nama }}</td>
                                                     <td>{{ $pengaduan->user->nomor_pelanggan }}</td>
@@ -45,6 +46,21 @@
                                                                 style="margin-right: 5px"></i>Lihat Pengaduan</a>
                                                     </td>
                                                 </tr>
+=======
+                                                @if ($pengaduan->tanggapan->tahap == 1)
+                                                    <tr>
+                                                        <td>{{ $pengaduan->nama }}</td>
+                                                        <td>{{ $pengaduan->nomor_pelanggan }}</td>
+                                                        <td>{{ $pengaduan->created_at->format(' d-m-Y - H:i:s') }}</td>
+                                                        <td>{{ $pengaduan->tanggapan->status_pengaduan }}</td>
+                                                        <td>
+                                                            <a href="{{ route('pengaduan.show', $pengaduan->id) }}"
+                                                                class="btn btn-danger btn-sm"><i class="fa fa-eye"
+                                                                    style="margin-right: 5px"></i>Lihat Pengaduan</a>
+                                                        </td>
+                                                    </tr>
+                                                @endif
+>>>>>>> 57ed63c4293402cb6936f8ea00c3fe9af886fdae
                                             @empty
                                                 <tr>
                                                     <td colspan="7" class="text-center">Tidak Ada Pengaduan</td>
