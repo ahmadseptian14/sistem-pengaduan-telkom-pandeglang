@@ -31,12 +31,12 @@
                                         <tbody>
                                             @forelse ($pengaduans as $pengaduan)
                                                 <tr>
-                                                    <td>{{ $pengaduan->pengaduan->nama }}</td>
+                                                    <td>{{ $pengaduan->nama }}</td>
                                                     <td>{{ $pengaduan->user->nomor_pelanggan }}</td>
                                                     <td>{{ $pengaduan->created_at->format(' d-m-Y - H:i:s') }}</td>
 
 
-                                                    <td>{{ $pengaduan->status_pengaduan }}</td>
+                                                    <td>{{ $pengaduan->tanggapan->status_pengaduan }}</td>
 
 
                                                     <td>

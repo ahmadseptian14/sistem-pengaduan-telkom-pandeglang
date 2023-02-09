@@ -165,7 +165,7 @@
         <div class="col-lg-6 mb-4">
             <div class="card bg-success text-white shadow">
                 <div class="card-body">
-                    Ada {{$dua}} Pelanggan yang merasa kurang puas dengan pelayanan
+                    Ada {{$dua}} Pelanggan yang merasa kurang dengan pelayanan
                 </div>
             </div>
         </div>
@@ -201,7 +201,7 @@
         var data = new google.visualization.arrayToDataTable([
           ['Move', 'Jumlah'],
           ["Tidak Puas", {{$satu}}],
-          ["Sangat Kurang", {{$dua}}],
+          ["Kurang", {{$dua}}],
           ["Cukup", {{$tiga}}],
           ["Puas", {{$empat}}],
           ['Sangat Puas', {{$lima}}]

@@ -42,7 +42,7 @@ class PengaduanController extends Controller
     {
 
         // $pengaduans = Tanggapan::where('status_pengaduan', 'Sedang di Proses')->orderBy('created_at', 'desc')->get();
-        $pengaduans = Pengaduan::with('tanggapan')->where('status', 'Sedang di Proses')->orderBy('created_at', 'desc')->get();
+        $pengaduans = Pengaduan::orderBy('created_at', 'desc')->get();
 
         return view('pages.admin.pengaduan.sedangdiproses', [
             'pengaduans' => $pengaduans
