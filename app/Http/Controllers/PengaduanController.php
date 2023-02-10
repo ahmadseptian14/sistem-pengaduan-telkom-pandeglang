@@ -42,10 +42,10 @@ class PengaduanController extends Controller
     {
 
         // $pengaduans = Tanggapan::where('status_pengaduan', 'Sedang di Proses')->orderBy('created_at', 'desc')->get();
-        $pengaduans = Pengaduan::orderBy('created_at', 'desc')->get();
+        $tanggapans = Tanggapan::with('pengaduan')->orderBy('created_at', 'desc')->get();
 
         return view('pages.admin.pengaduan.sedangdiproses', [
-            'pengaduans' => $pengaduans
+            'tanggapans' => $tanggapans
         ]);
     }
 
@@ -53,10 +53,11 @@ class PengaduanController extends Controller
     {
         // $pengaduans = Pengaduan::orderBy('created_at', 'desc')->get();
 
-        $pengaduans = Pengaduan::with('tanggapan')->orderBy('created_at', 'desc')->get();
+        // $pengaduans = Pengaduan::with('tanggapan')->orderBy('created_at', 'desc')->get();
+        $tanggapans = Tanggapan::with('pengaduan')->orderBy('created_at', 'desc')->get();
 
         return view('pages.admin.pengaduan.selesai', [
-            'pengaduans' => $pengaduans
+            'tanggapans' => $tanggapans
         ]);
     }
 
@@ -86,16 +87,27 @@ class PengaduanController extends Controller
         $id = Auth::user()->id;
         $nama = Auth::user()->name;
 
-        $data = $request->all();
-        $data['user_id'] = $id;
-        $data['nama'] = $nama;
+        if ($request->nomor_pelanggan == Auth::user()->nomor_pelanggan ) {
+            $data = $request->all();
+            $data['user_id'] = $id;
+            $data['nama'] = $nama;
+            Pengaduan::create($data);
+            Alert::success('Berhasil', 'Pengaduan terkirim');
+            return redirect()->back();
+        } else {
+            Alert::error('Gagal', 'Nomor Pelanggan tidak sesuai');
+            return redirect()->back();
+        }
 
 
-        Pengaduan::create($data);
 
-        Alert::success('Berhasil', 'Pengaduan terkirim');
 
-        return redirect()->route('home');
+
+
+
+
+
+
 
     }
 

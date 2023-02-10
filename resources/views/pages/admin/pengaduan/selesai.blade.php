@@ -29,15 +29,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($pengaduans as $pengaduan)
-                                                @if ($pengaduan->tanggapan->tahap == 2)
+                                            @forelse ($tanggapans as $tanggapan)
+                                                @if ($tanggapan->tahap == 2)
                                                     <tr>
-                                                        <td>{{ $pengaduan->nama }}</td>
-                                                        <td>{{ $pengaduan->nomor_pelanggan }}</td>
-                                                        <td>{{ $pengaduan->created_at->format(' d-m-Y - H:i:s') }}</td>
-                                                        <td>{{ $pengaduan->tanggapan->status_pengaduan }}</td>
+                                                        <td>{{ $tanggapan->pengaduan->nama }}</td>
+                                                        <td>{{ $tanggapan->pengaduan->nomor_pelanggan }}</td>
+                                                        <td>{{ $tanggapan->pengaduan->created_at->format(' d-m-Y - H:i:s') }}</td>
+                                                        <td>{{ $tanggapan->status_pengaduan }}</td>
                                                         <td>
-                                                            <a href="{{ route('pengaduan.show', $pengaduan->id) }}"
+                                                            <a href="{{ route('pengaduan.show', $tanggapan->pengaduan->id) }}"
                                                                 class="btn btn-danger btn-sm"><i class="fa fa-eye"
                                                                     style="margin-right: 5px"></i>Lihat Pengaduan</a>
                                                         </td>
