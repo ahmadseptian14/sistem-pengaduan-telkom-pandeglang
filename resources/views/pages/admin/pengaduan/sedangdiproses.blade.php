@@ -29,8 +29,13 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+<<<<<<< HEAD
                                             @forelse ($tanggapans as $tanggapan)
                                                 @if ($tanggapan->tahap == 1)
+=======
+                                            @forelse ($pengaduans as $pengaduan)
+                                                @if ($pengaduan->tanggapan->tahap == 1)
+>>>>>>> 9e766280efcb22964a96fa4cc401f8afbbb0f473
                                                     <tr>
                                                         <td>{{ $tanggapan->pengaduan->nama }}</td>
                                                         <td>{{ $tanggapan->pengaduan->nomor_pelanggan }}</td>
@@ -42,7 +47,12 @@
                                                                     style="margin-right: 5px"></i>Lihat Pengaduan</a>
                                                         </td>
                                                     </tr>
+                                                
                                                 @endif
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9e766280efcb22964a96fa4cc401f8afbbb0f473
                                             @empty
                                                 <tr>
                                                     <td colspan="7" class="text-center">Tidak Ada Pengaduan</td>
