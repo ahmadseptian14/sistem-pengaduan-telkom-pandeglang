@@ -97,6 +97,11 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
     //Penilaian
     Route::get('/penilaian', [PenilaianController::class, 'index'])->name('penilaian.index');
+    Route::get('/penilaian-tidak-puas', [PenilaianController::class, 'tidak_puas'])->name('penilaian.tidak-puas');
+    Route::get('/penilaian-cukup', [PenilaianController::class, 'cukup'])->name('penilaian.cukup');
+    Route::get('/penilaian-kurang-puas', [PenilaianController::class, 'kurang_puas'])->name('penilaian.kurang');
+    Route::get('/penilaian-puas', [PenilaianController::class, 'puas'])->name('penilaian.puas');
+    Route::get('/penilaian-sangat-puas', [PenilaianController::class, 'sangat_puas'])->name('penilaian.sangat-puas');
 
     //SMS
     Route::get('/sms/{id}', [SmsController::class, 'create'])->name('sms.create');

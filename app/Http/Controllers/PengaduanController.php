@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use PDF;
 use App\Models\Pengaduan;
-// use Barryvdh\DomPDF\PDF;
 use App\Models\Penilaian;
 use App\Models\Tanggapan;
 use Illuminate\Http\Request;

@@ -441,8 +441,8 @@
                                     <select name="rating" id="" class="form-control">
                                         <option value="Sangat Puas">Sangat Puas</option>
                                         <option value="Puas">Puas</option>
-                                        <option value="Cukup">Cukup</option></option>
-                                        <option value="Kurang Puas">Kurang</option>
+                                        <option value="Cukup Puas">Cukup Puas</option></option>
+                                        <option value="Kurang Puas">Kurang Puas</option>
                                         <option value="Tidak Puas">Tidak Puas</option>
 
                                     </select>

@@ -42,7 +42,6 @@
                                                                     style="margin-right: 5px"></i>Lihat Pengaduan</a>
                                                         </td>
                                                     </tr>
-                                                
                                                 @endif
                                             @empty
                                                 <tr>

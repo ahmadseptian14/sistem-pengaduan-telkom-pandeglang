@@ -25,6 +25,51 @@ class PenilaianController extends Controller
         ]);
     }
 
+    public function tidak_puas()
+    {
+        $penilaians = Penilaian::with('user')->where('rating', 'Tidak Puas')->orderBy('created_at', 'desc')->get();
+
+        return view('pages.admin.penilaian.tidak-puas', [
+            'penilaians' => $penilaians
+        ]);
+    }
+
+    public function kurang_puas()
+    {
+        $penilaians = Penilaian::with('user')->where('rating', 'Kurang Puas')->orderBy('created_at', 'desc')->get();
+
+        return view('pages.admin.penilaian.kurang-puas', [
+            'penilaians' => $penilaians
+        ]);
+    }
+
+    public function cukup()
+    {
+        $penilaians = Penilaian::with('user')->where('rating', 'Cukup Puas')->orderBy('created_at', 'desc')->get();
+
+        return view('pages.admin.penilaian.cukup', [
+            'penilaians' => $penilaians
+        ]);
+    }
+
+    public function puas()
+    {
+        $penilaians = Penilaian::with('user')->where('rating', 'Puas')->orderBy('created_at', 'desc')->get();
+
+        return view('pages.admin.penilaian.puas', [
+            'penilaians' => $penilaians
+        ]);
+    }
+
+    public function sangat_puas()
+    {
+        $penilaians = Penilaian::with('user')->where('rating', 'Sangat Puas')->orderBy('created_at', 'desc')->get();
+
+        return view('pages.admin.penilaian.sangat-puas', [
+            'penilaians' => $penilaians
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

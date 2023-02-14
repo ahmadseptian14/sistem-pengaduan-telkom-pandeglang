@@ -27,7 +27,7 @@ class DashboardController extends Controller
         $sedangdiproses =Tanggapan::where('status_pengaduan', 'Sedang di Proses')->count() - $selesai;
         $satu = Penilaian::where('rating', 'Tidak Puas')->count();
         $dua = Penilaian::where('rating', 'Kurang Puas')->count();
-        $tiga = Penilaian::where('rating', 'Cukup')->count();
+        $tiga = Penilaian::where('rating', 'Cukup Puas')->count();
         $empat = Penilaian::where('rating', 'Puas')->count();
         $lima = Penilaian::where('rating', 'Sangat Puas')->count();
 
