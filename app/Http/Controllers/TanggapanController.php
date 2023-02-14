@@ -65,7 +65,7 @@ class TanggapanController extends Controller
 
         Alert::success('Berhasil', 'Pengaduan berhasil ditanggapi');
         Tanggapan::create($data);
-        return redirect()->route('pengaduan.index');
+        return redirect()->route('dashboard.index');
 
 
     }
